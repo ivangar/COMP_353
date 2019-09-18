@@ -88,7 +88,7 @@ echo "<br>";
 $section = 0; //variable used to distiguish between the 3 sections
 
 //open the csv file
-if (($h = fopen("db19s-P1.csv", "r")) !== FALSE) 
+if (($h = fopen($_POST["file_path"], "r")) !== FALSE) 
 {
   //get each line as an array seperated by an "|"  
   while (($data = fgetcsv($h, 1000, "|")) !== FALSE) 
