@@ -9,7 +9,7 @@
 	</head>
 
 	<body>	
-		<form action="../Backend/CSVLoader.php" method="POST">
+		<form action="../Backend/CSVloader.php" method="POST">
 			Select image to upload:
 			<input type="file" name="file_path" id="fileToUpload">
 			<input type="submit" value="Upload Image" name="submit">
