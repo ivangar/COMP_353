@@ -1,4 +1,13 @@
 <?php
+/*
+    Comp353 Group 7 Project 1
+	27043651 Nicolas Brodeur-Champagne
+	27502303 Siamak Samie
+	27006284 Ivan Garzon
+	26854486 Ragith Sabapathipillai
+	40035761 Jesse Desmarais
+*/
+
 $servername = "localhost";
 $username = "root";
 $password = "";
