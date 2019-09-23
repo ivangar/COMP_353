@@ -42,13 +42,35 @@ $sql = "CREATE TABLE IF NOT EXISTS user (
         echo "Error creating table: " . $conn->error;
     }
 
+$sql = "CREATE TABLE IF NOT EXISTS roles (
+    roleID INT(10) PRIMARY KEY NOT NULL,
+    description VARCHAR(30)
+    )";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<br>";
+        echo "Table 'roles' created successfully";
+    } else {
+        echo "<br>";
+        echo "Error creating table: " . $conn->error;
+    }
+
 //table event_info
 $sql = "CREATE TABLE IF NOT EXISTS event_info (
     eventName VARCHAR(30) NOT NULL,
     eventId INT(10) PRIMARY KEY NOT NULL,
     startDate DATE NOT NULL,
     endDate DATE,
-    adminUserID INT(10) NOT NULL
+    adminUserID INT(10) NOT NULL,
+    roleID INT(10) NOT NULL,
+    CONSTRAINT `fk_event_info_user`
+        FOREIGN KEY (adminUserID) REFERENCES user (userID)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+    CONSTRAINT `fk_event_info_roles`
+        FOREIGN KEY (roleID) REFERENCES roles (roleID)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
     )";
 
     if ($conn->query($sql) === TRUE) {
@@ -63,7 +85,15 @@ $sql = "CREATE TABLE IF NOT EXISTS event_info (
 $sql = "CREATE TABLE IF NOT EXISTS participant (
     userID INT(10) NOT NULL,
     eventID INT(10) NOT NULL,
-    PRIMARY KEY (userID, eventID)
+    PRIMARY KEY (userID, eventID),
+    CONSTRAINT `fk_participant_user`
+        FOREIGN KEY (userID) REFERENCES user (userID)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+    CONSTRAINT `fk_participant_event_info`
+        FOREIGN KEY (eventID) REFERENCES event_info (eventId)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
     )";
 
     if ($conn->query($sql) === TRUE) {
@@ -99,7 +129,7 @@ if (($h = fopen($_POST["file_path"], "r")) !== FALSE)
         $section++;
     }
     // Ignoring the lines of column titles. No need to store that in DB
-    else if ((isset($data[4]) ? $data[4] : null) == "userID" || (isset($data[2]) ? $data[2] : null) == "EventID"){
+    else if ((isset($data[4]) ? $data[4] : null) == "userID" || (isset($data[2]) ? $data[2] : null) == "EventID" || (isset($data[1]) ? $data[1] : null) == "RoleID"){
         // do nothing
     }
 
@@ -125,21 +155,40 @@ if (($h = fopen($_POST["file_path"], "r")) !== FALSE)
 
 
     }
-  
+
     else if($section==2){
+
+        $roleID = !empty($data[1]) ? "'$data[1]'" : "NULL";
+        $description = !empty($data[2]) ? "'$data[2]'" : "NULL";
+
+        //check if there aren't any admins already registered in the table with the admin id from the csv file
+        $search_admins_qry = "SELECT * FROM roles WHERE roles.roleID = $roleID";
+
+        if($result = $conn->query($search_admins_qry) ){
+            if($result->num_rows == 0){
+                $sql = "INSERT INTO roles (roleID, description) VALUES ($roleID, $description)";
+                if ($conn->query($sql) != TRUE) {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            }
+        }
+    }
+
+    else if($section==3){
 
         $eventName = !empty($data[1]) ? "'$data[1]'" : "NULL";
         $eventID = !empty($data[2]) ? "'$data[2]'" : "NULL";
         $startDate = !empty($data[3]) ? "'$data[3]'" : "NULL";
         $endDate = !empty($data[4]) ? "'$data[4]'" : "NULL";
         $adminUserID = !empty($data[5]) ? "'$data[5]'" : "NULL";
+        $roleID = !empty($data[6]) ? "'$data[6]'" : "NULL";
 
         //check if there aren't any admins already registered in the table with the admin id from the csv file
         $search_admins_qry = "SELECT * FROM event_info WHERE event_info.adminUserID = $adminUserID";
 
         if($result = $conn->query($search_admins_qry) ){
             if($result->num_rows == 0){
-                $sql = "INSERT INTO event_info (eventName, eventID, startDate, endDate, adminUserID) VALUES ($eventName, $eventID, $startDate, $endDate, $adminUserID)";
+                $sql = "INSERT INTO event_info (eventName, eventID, startDate, endDate, adminUserID, roleID) VALUES ($eventName, $eventID, $startDate, $endDate, $adminUserID, $roleID)";
                 if ($conn->query($sql) != TRUE) {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
@@ -147,7 +196,7 @@ if (($h = fopen($_POST["file_path"], "r")) !== FALSE)
         }
     }
     
-    else if($section==3){
+    else if($section==4){
 
         $userID = !empty($data[1]) ? "'$data[1]'" : "NULL";
         $eventID = !empty($data[2]) ? "'$data[2]'" : "NULL";
