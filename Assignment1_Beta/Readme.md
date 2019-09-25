@@ -1,0 +1,1 @@
+This folder contains the E-R diagram needed for assignment 1. 
