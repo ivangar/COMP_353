@@ -1,1 +1,0 @@
-This folder will contain the solutions to assignment 2.
