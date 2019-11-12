@@ -12,8 +12,9 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-else{
+//For now I commented these, cauz it was printing the successful message every time
+/*else{
     echo "Connected successfully";
-}
+}*/
 $conn->select_db('scc_db');
 ?>
