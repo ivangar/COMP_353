@@ -27,6 +27,7 @@ if($event_id){
 	    // output data of each row
 	    while($row = $result->fetch_assoc()) {
 	    	$event_info = array("Event name"=>$row["event_name"], "Start Date"=>$row["start_date"], "End Date"=>$row["end_date"], "Status"=>$row["status"], "Total cost"=>$row["total_cost"]);
+	    	$event_info_ids = array("Event name"=>"event_name", "Start Date"=>"start_date", "End Date"=>"end_date", "Status"=>"status", "Total cost"=>"total_cost");
 	    }
 	}
 }
@@ -67,18 +68,57 @@ if($event_id){
 
   <?php if(!empty($event_id) && $event_id) {  ?>
   	<div class="container">
-	<table cellpadding="10">
-		<caption>Main info</caption>
-	  	<tbody>
-	  		<?php foreach($event_info as $label => $value) { echo "<tr><td>$label</td><td>$value</td></tr>"; }
-	  		?>
-		</tbody>
-	</table>
+
+	  	<form action="" method="post" name="update_event_form" id="update_event_form" accept-charset="utf-8">
+	  			<?php 
+	  			 echo "<input type='hidden' name='event_id' value='$event_id'>";
+
+	  			 if(!empty($event_info) && sizeof($event_info) != 0) {
+	  				echo "<fieldset><legend>Main details</legend>";
+	  				foreach($event_info as $label => $value) { 
+	  							$column_name = $event_info_ids[$label];
+	  							echo "<p><label>$label</label><input type='text' name='$column_name' title='$column_name' value='$value' required></p>"; 
+	  				}
+	  				echo "<p><button id='update_event' type='submit'>Update</button><button>Import users</button></p></fieldset>"; 
+	  			}
+	  						
+	  			?>
+
+		</form>
+
 	</div>
 
 
   <?php }?>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+	$(document).ready(function () {
+
+		$( "#update_event_form" ).submit(function( event ) {
+			event_data = $("#update_event_form").serializeArray();
+			console.log(event_data);
+		    
+		    $.ajax({
+              url: "update_event.php",
+              cache: false,
+              type: "POST",
+              dataType: "html",
+              data: event_data
+            }) 
+            .done(function( data ) {
+             	if(data === "failed") alert("event has been updated");
+                else alert(data);
+            })
+            .fail(function() {
+                alert("event did not update"); 
+            }); //ajax call
+
+            console.log('pressed form buton');
+            event.preventDefault();
+        });
+
+	});//end document.ready
+  </script>
 </body>
 
 </html>

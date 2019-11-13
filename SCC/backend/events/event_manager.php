@@ -12,6 +12,7 @@ $_SESSION['user_id'] = 1; //Once the login functionality exists this line should
 $_SESSION['user_name'] = "Ivan";  //Once the login functionality exists this line should be deleted, user id session will be set in the login
 
 $user_id = $_SESSION['user_id'];
+//$user_id = $_SESSION['active_user']['user_id'];
 $user_name = $_SESSION['user_name'];
 
 $sql = "SELECT * FROM events WHERE event_manager_id = $user_id";
