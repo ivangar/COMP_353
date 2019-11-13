@@ -9,6 +9,7 @@
 
 
 	$result = $conn->query($sql);
+	
 	if($result != true)
 		echo "Error: " . $sql . "<br>" . $conn->error;
 
