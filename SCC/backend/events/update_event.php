@@ -24,7 +24,7 @@ if(isset($_POST) && (!empty($_POST))){
   $total_cost = $data['total_cost'];  
 
   $sql = "UPDATE events 
-          SET event_name = '$event_name', start_date = $start_date, end_date = $end_date, status = $status, total_cost = $total_cost
+          SET event_name = '$event_name', start_date = '$start_date', end_date = '$end_date', status = $status, total_cost = $total_cost
           WHERE event_id = $event_id";
   
     if ($conn->query($sql) === TRUE) {
