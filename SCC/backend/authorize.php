@@ -22,13 +22,14 @@
 		  {
 				session_start();
 				$_SESSION['active_user'] = $row;
+				header('Location: ../frontend/dashboard.php');
+
 		  }
 		  else
 			  "invalid password";
 		}
 	}
 	else 
-		echo "Error: incorrect login";
-	
+		echo "Error: incorrect login";	
 	$conn->close();
 ?>
