@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "107.180.50.224";
+$username = "muigi";
+$password = "admin123";
 $db = "scc_db";
+
 
 
 // Creating connection
