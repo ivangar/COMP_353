@@ -23,7 +23,12 @@ if ($result->num_rows > 0) {
 	
     // output data of each row
     while($row = $result->fetch_assoc()) {
-    	$event_details_url = "<a href='event_details.php?event_id=" . $row["event_id"] . "'>view details</a>";
+    	echo $row['status'];
+    	if($row['status'] == '2') {
+    		$event_details_url = "<a href='../../frontend/form_event_finalizer.php?event_id=" . $row["event_id"] . "'>Finalize Event</a>";
+    	} else {
+    		$event_details_url = "<a href='event_details.php?event_id=" . $row["event_id"] . "'>view details</a>";
+    	}
     	$event_info = array($row["event_id"],$row["event_name"],$row["start_date"],$row["end_date"],$row["status"],$event_details_url);
     	array_push($event_rows,$event_info);
     	$event_info = array();
