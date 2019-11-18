@@ -9,6 +9,7 @@
 	</head>
 
 	<body>	
+		<a href='event_manager_page.php'>Go Back</a>
 		<h1>Finalize Event</h1>
 		<form action="../backend/events/event_finalize.php" method="POST">
 			<p>Enter event name</p>

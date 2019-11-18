@@ -67,10 +67,11 @@ CREATE TABLE `events` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `events` (`event_id`, `event_payment_id`, `event_type_id`, `resource_id`, `event_manager_id`, `location_id`, `event_name`, `start_date`, `end_date`, `period`, `status`, `total_cost`) VALUES
-(1, 1, 1, 1, 1, 1, 'Wedding celebration', '2019-12-22', '2019-12-23', '2020-12-31', 1, 5000),
-(2, 2, 2, 2, 1, 2, 'Halloween Party', '2020-10-31', '2020-10-31', '2022-10-31', 1, 350),
-(3, 3, 1, 2, 1, 3, 'Bachelor\'s party', '2020-01-08', '2020-01-11', '2022-01-11', 1, 700),
-(4, 4, 2, 3, 1, 4, 'John\'s birthday', '2019-12-16', '2019-12-16', '2021-12-16', 1, 250);
+(1, 1, 1, 1, 4480757, 1, 'Wedding celebration', '2019-12-22', '2019-12-23', '2020-12-31', 1, 5000),
+(2, 2, 2, 2, 4480757, 2, 'Halloween Party', '2020-10-31', '2020-10-31', '2022-10-31', 2, 350),
+(3, 3, 1, 2, 4480757, 3, 'Bachelor party', '2020-01-08', '2020-01-11', '2022-01-11', 1, 700),
+(4, 4, 2, 3, 6797613, 4, 'Johns birthday', '2019-12-16', '2019-12-16', '2021-12-16', 2, 250),
+(5, 5, 1, 1, 6797613, 5, 'Toronto Conference', '2020-01-10', '2020-01-18', '2020-01-18', 1, 250);
 
 COMMIT;
 
