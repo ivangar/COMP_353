@@ -1,6 +1,6 @@
 <?php 
 require("../backend/connection.php");
-require '../backend/events/event_manager.php';?>
+require("../backend/events/event_manager.php");?>
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -15,10 +15,17 @@ require '../backend/events/event_manager.php';?>
   <!-- Place favicon.ico in the root directory -->
 
   <meta name="theme-color" content="#fafafa">
+  <style type="text/css">
+    .right {
+      position: absolute;
+      right: 0px;
+      padding: 10px;
+    }
+  </style>
 </head>
 
 <body>
-
+  <a href='../backend/logout.php' class='right'>Logout</a>
   <h3>Welcome <?php echo $user_name; ?>!</h3>
 
   <?php if(!empty($event_rows) && sizeof($event_rows) != 0) {  ?>

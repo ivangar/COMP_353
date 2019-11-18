@@ -5,10 +5,16 @@
 			a{
 				margin-right:20px;
 			}
+			.right {
+		      position: absolute;
+		      right: 0px;
+		      padding: 10px;
+		    }
 		</style>
 	</head>
 
 	<body>	
+		<a href='../backend/logout.php' class='right'>Logout</a>
 		<a href='event_manager_page.php'>Go Back</a>
 		<h1>Finalize Event</h1>
 		<form action="../backend/events/event_finalize.php" method="POST">
