@@ -1,6 +1,6 @@
 <?php 
 require("../backend/connection.php");
-require '../backend/events/event_details.php';?>
+require("../backend/events/event_details.php");?>
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -27,23 +27,30 @@ require '../backend/events/event_details.php';?>
     table{
     	text-align: left;
     }
+    .right {
+      position: absolute;
+      right: 0px;
+      padding: 10px;
+    }
 </style>
 </head>
 
 <body>
 
   <a href='event_manager_page.php'>Go Back</a>
+  <a href='../backend/logout.php' class='right'>Logout</a>
   <h3 >Event Details</h3>
 
   <?php if(!empty($event_id) && $event_id) {  ?>
   	<div class="container">
 
 	  	<form action="" method="post" name="update_event_form" id="update_event_form" accept-charset="utf-8">
+        
 	  			<?php 
 	  			 echo "<input type='hidden' name='event_id' value='$event_id'>";
 
 	  			 if(!empty($event_info) && sizeof($event_info) != 0) {
-	  				echo "<fieldset><legend>Main details</legend>";
+            echo "<fieldset><legend>Main details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
 	  				foreach($event_info as $label => $value) { 
 	  							$column_name = $event_info_ids[$label];
                   $input_type = "text";
@@ -53,10 +60,26 @@ require '../backend/events/event_details.php';?>
                   if($d && $d->format('Y-m-d') === $value)
                     $input_type = "date";
 
-	  							echo "<p><label>$label</label><input type='$input_type' name='$column_name' title='$column_name' value='$value' required></p>"; 
+	  							echo "<tr><td><label>$label</label></td><td><input type='$input_type' name='$column_name' title='$column_name' value='$value' required></td></tr>"; 
 	  				}
-	  				echo "<p><button id='update_event' type='submit'>Update</button><button>Import users</button></p></fieldset>"; 
+	  				echo "<tr><td><button id='update_event' type='submit'>Update</button></td><td><button>Import users</button></tr></td></tbody></table></fieldset>";
 	  			}
+
+          if(!empty($event_location) && sizeof($event_location) != 0) {
+            echo "<div style='padding-top:30px;'><fieldset><legend>Event Location</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            foreach($event_location as $label => $value) { 
+                  $column_name = $event_info_ids[$label]; //RENAME THE ARRAY HOLDING THE IDS OF THE LABELS
+                  $input_type = "text";
+
+                  //Check date types
+                  $d = DateTime::createFromFormat('Y-m-d', $value);
+                  if($d && $d->format('Y-m-d') === $value)
+                    $input_type = "date";
+
+                  echo "<tr><td><label>$label</label></td><td><input type='$input_type' name='$column_name' title='$column_name' value='$value' required></td></tr>"; 
+            }
+            echo "<tr><td><button id='update_event' type='submit'>Update</button></td><td><button>Import users</button></tr></td></tbody></table></fieldset></div>";
+          }
 	  						
 	  			?>
 
@@ -74,7 +97,7 @@ require '../backend/events/event_details.php';?>
 			event_data = $("#update_event_form").serializeArray();
 		    
 		    $.ajax({
-              url: "update_event.php",
+              url: "../backend/events/update_event.php",
               cache: false,
               type: "POST",
               dataType: "html",
