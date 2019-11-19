@@ -5,7 +5,9 @@
 */
 
 ini_set("display_errors","1");
-session_start();
+if(!isset($_SESSION)){
+  session_start();
+}
 
 $user_id = $_SESSION['active_user']['user_id'];
 $user_name = $_SESSION['active_user']['first_name'];
