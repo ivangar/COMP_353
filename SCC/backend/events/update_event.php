@@ -8,8 +8,8 @@ ini_set("display_errors","1");
 session_start();
 require("../connection.php");
 
-$user_id = $_SESSION['user_id'];
-$user_name = $_SESSION['user_name'];
+$user_id = $_SESSION['active_user']['user_id'];
+$user_name = $_SESSION['active_user']['first_name'];
 
 
 if(isset($_POST) && (!empty($_POST))){

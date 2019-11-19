@@ -1,7 +1,7 @@
 <?php
-$servername = "107.180.50.224";
-$username = "muigi";
-$password = "admin123";
+$servername = "localhost";
+$username = "root";
+$password = "";
 $db = "scc_db";
 
 
