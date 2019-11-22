@@ -3,7 +3,7 @@
 * This file is used to display events that are managed by the current logged in user.
 * It should be included from or redirected from another file (perhaps the home page)
 */
-
+include("../backend/user_role_relation.php");
 ini_set("display_errors","1");
 if(!isset($_SESSION)){
   session_start();
@@ -12,7 +12,12 @@ if(!isset($_SESSION)){
 $user_id = $_SESSION['active_user']['user_id'];
 $user_name = $_SESSION['active_user']['first_name'];
 
-$sql = "SELECT * FROM events WHERE event_manager_id = $user_id";
+if($roleId != 0) {
+    $sql = "SELECT * FROM events WHERE event_manager_id = $user_id";
+}
+else {
+    $sql = "SELECT * FROM events"; 
+}
 $result = $conn->query($sql);
 $event_rows = array();
 

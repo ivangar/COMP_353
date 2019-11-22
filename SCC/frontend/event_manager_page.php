@@ -25,7 +25,6 @@ require("../backend/events/event_manager.php");?>
 </head>
 
 <body>
-  <a href='../backend/logout.php' class='right'>Logout</a>
   <h3>Welcome <?php echo $user_name; ?>!</h3>
 
   <?php if(!empty($event_rows) && sizeof($event_rows) != 0) {  ?>
