@@ -7,8 +7,6 @@ The new rows are empty for now, but will be used later, when event manager updat
 DELIMITER $$
 CREATE TRIGGER `CreateEventForeignKeys` BEFORE INSERT ON `events`
  FOR EACH ROW BEGIN
-	 	INSERT INTO `event_types` (`type`, `recurrent`, `organization`) VALUES (NULL, NULL, NULL);
-	 	SET NEW.event_type_id = LAST_INSERT_ID();
 	 	INSERT INTO `event_payment` (`name`, `address`, `phone_no`, `bank_name`, `account_number`, `payment_method`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL);
 	 	SET NEW.event_payment_id = LAST_INSERT_ID();
 	 	INSERT INTO `resources` (`basic_fee`, `type`, `unit`, `name`, `extra_fee`, `discount`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL);

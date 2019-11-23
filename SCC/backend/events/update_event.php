@@ -8,29 +8,99 @@ ini_set("display_errors","1");
 session_start();
 require("../connection.php");
 
-$user_id = $_SESSION['active_user']['user_id'];
-$user_name = $_SESSION['active_user']['first_name'];
-
-
 if(isset($_POST) && (!empty($_POST))){
 
-  $data = $_POST;
+  //Setting up post params
 
-  $event_id = $data['event_id']; 
+  $data = $_POST;
+  $event_id = $data['event_id'];
+  $event_location_id = $data['location_id']; 
+  $event_payment_id = $data["payment_id"];
+  $event_resource_id = $data["resource_id"];
   $event_name = $data['event_name'];  
   $start_date = $data['start_date']; 
   $end_date = $data['end_date']; 
   $status = $data['status']; 
-  $total_cost = $data['total_cost'];  
+  $total_cost = $data['total_cost'];
+  $event_type = $data['event_types'];
+  $recurrent_event = $data['recurrent_event'];
+  $event_address = $data['address'];
+  $event_phone_no = $data['phone_no'];
+  $event_email = $data['email'];
+  $event_room_no = $data['room_no'];
+  $event_renting_cost = $data['renting_cost'];
+  $event_capacity = $data['capacity'];
+  $account_holder = $data['account_holder'];
+  $payment_address = $data['payment_address'];
+  $payment_phone_no = $data['payment_phone_no'];
+  $bank_name = $data['bank_name'];
+  $account_number = $data['account_number'];
+  $payment_method = $data['payment_method'];
+  $flat_fee = $data['flat_fee'];
+  $resource_type = $data['resource_type'];
+  $unit = $data['unit'];
+  $resource_name = $data['resource_name'];
+  $extra_fee = $data['extra_fee'];
+  $discount = $data['discount'];
+  $event_type_id = 0;
+  $updated_tables = 0;
+  
 
+  //Check all possible 4 combinations of Event type & recurrent options from select list, and save as one id
+  //example: if(event_types === "private" && recurrent_event == 1) $event_type_id = 3;
+
+  if($event_type === "private"){
+      $event_type_id = ($recurrent_event == 1) ? 3 : 1;
+  }
+
+  if($event_type === "non-profit"){
+      $event_type_id = ($recurrent_event == 1) ? 4 : 2;
+  }
+    
+  //Update events table
   $sql = "UPDATE events 
-          SET event_name = '$event_name', start_date = '$start_date', end_date = '$end_date', status = $status, total_cost = $total_cost
+          SET event_type_id = $event_type_id, event_name = '$event_name', start_date = '$start_date', end_date = '$end_date', status = $status, total_cost = $total_cost
           WHERE event_id = $event_id";
   
     if ($conn->query($sql) === TRUE) {
-        echo "updated";
+        $updated_tables++;
     } else {
         echo "error " . $conn->error;
     }
 
+    //Update event_locations table
+  $sql = "UPDATE event_locations 
+          SET address = '$event_address', phone_no = '$event_phone_no', email = '$event_email', room_no = $event_room_no, renting_cost = $event_renting_cost, capacity = $event_capacity
+          WHERE location_id = $event_location_id";
+  
+    if ($conn->query($sql) === TRUE) {
+        $updated_tables++;
+    } else {
+        echo "error " . $conn->error;
+    }
+
+    //Update event_payment table
+  $sql = "UPDATE event_payment 
+          SET account_holder = '$account_holder', address = '$payment_address', phone_no = '$payment_phone_no', bank_name = '$bank_name', account_number = '$account_number', payment_method = '$payment_method'
+          WHERE event_payment_id = $event_payment_id";
+  
+    if ($conn->query($sql) === TRUE) {
+        $updated_tables++;
+    } else {
+        echo "error " . $conn->error;
+    }
+
+        //Update resources table
+  $sql = "UPDATE resources 
+          SET flat_fee = $flat_fee, type = '$resource_type', unit = '$unit', resource_name = '$resource_name', extra_fee = $extra_fee, discount = $discount
+          WHERE resource_id = $event_resource_id";
+  
+    if ($conn->query($sql) === TRUE) {
+        $updated_tables++;
+    } else {
+        echo "error " . $conn->error;
+    }
+
+    if($updated_tables == 4)
+      echo "updated";
 }
