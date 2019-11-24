@@ -4,13 +4,13 @@ $event_manager = $_POST['user_id'];
 $event_fee = $_POST['event_fee'];
 
 switch ($_POST["event_type"]) {
-	case 'non-profitR':
+	case 'non-profit_recurrent':
 		$event_id = "2";
 		break;
 	case 'non-profit':
 		$event_id = "4";
 		break;
-	case 'privateR':
+	case 'private_recurrent':
 		$event_id = "1";
 		break;
 	case 'private':

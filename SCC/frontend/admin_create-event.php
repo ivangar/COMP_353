@@ -18,9 +18,9 @@
 		<input type="text" name="user_id">
 		<p>Select event type</p>
 		<select name="event_type">
-			<option value="non-profitR">non-profit recurrent</option>
+			<option value="non-profit_recurrent">non-profit recurrent</option>
 			<option value="non-profit">non-profit non-recurrent</option>
-			<option value="privateR">private recurrent</option>
+			<option value="private_recurrent">private recurrent</option>
 			<option value="private">private non-recurrent</option>
 		</select>
 		<p>Enter user fee</p>
