@@ -21,13 +21,19 @@ $event_resource_id = 0;
 
 
 if($event_id){
-  //Show event details for an event where the current user is an event manager
-	$sql = "SELECT * FROM events WHERE event_manager_id = $user_id AND event_id = $event_id";
+
+  //Check if the current user viewing the details is the event manager (and has the rights to update/archive the event)
+  $sql = "SELECT * FROM events WHERE event_manager_id = $user_id AND event_id = $event_id";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      $event_manager = 1;
+  }
+
+  //Show event details for an event
+	$sql = "SELECT * FROM events WHERE event_id = $event_id";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
-	    
-      $event_manager = 1;
 
 	    // output data of each row
 	    while($row = $result->fetch_assoc()) {
