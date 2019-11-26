@@ -26,14 +26,15 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
     	if($row['status'] == '2') {
+            $status = 'archived';
     		$event_details_url = "<a href='form_event_finalizer.php?event_id=" . $row["event_id"] . "'>Finalize Event</a>";
     	} else if($row['status'] == '1') {
+            $status = 'active';
     		$event_details_url = "<a href='event_details_page.php?event_id=" . $row["event_id"] . "'>view details</a>";
     	}
-    	$event_info = array($row["event_id"],$row["event_name"],$row["start_date"],$row["end_date"],$row["status"],$event_details_url);
+    	$event_info = array($row["event_id"],$row["event_name"],$row["start_date"],$row["end_date"],$status,$event_details_url);
     	array_push($event_rows,$event_info);
     	$event_info = array();
-        //echo "<br><br>event id: " . $row["event_id"]. " - Event Name: " . $row["event_name"]. " Start Date " . $row["start_date"] . " End date " . $row["end_date"] . " Status " . $row["status"] . "<br>";
     }
 }
 

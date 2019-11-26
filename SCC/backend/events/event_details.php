@@ -54,8 +54,8 @@ if($event_id){
             
         }
 
-	    	$event_info = array("Event name"=>$row["event_name"], "Start Date"=>$row["start_date"], "End Date"=>$row["end_date"], "Status"=>$row["status"], "Event type"=>$event_type, "Recurrent"=>$event_recurrent, "Total cost"=>$row["total_cost"]);
-	    	$event_info_ids = array("Event name"=>"event_name", "Start Date"=>"start_date", "End Date"=>"end_date", "Status"=>"status", "Event type"=>"type", "Recurrent"=>"recurrent", "Total cost"=>"total_cost");
+	    	$event_info = array("Event name"=>$row["event_name"], "Start Date"=>$row["start_date"], "End Date"=>$row["end_date"], "Period (expires)"=>$row["period"], "Status"=>$row["status"], "Event type"=>$event_type, "Recurrent"=>$event_recurrent, "Total cost"=>$row["total_cost"]);
+	    	$event_info_ids = array("Event name"=>"event_name", "Start Date"=>"start_date", "End Date"=>"end_date", "Period (expires)"=>"period", "Status"=>"status", "Event type"=>"type", "Recurrent"=>"recurrent", "Total cost"=>"total_cost");
 	     
         //SELECT EVENT LOCATION 
         $location_sql = "SELECT * FROM event_locations WHERE location_id = $event_location_id";

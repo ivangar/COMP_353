@@ -76,12 +76,19 @@ require("../backend/events/event_details.php");?>
                      echo "<tr><td><label>$label</label></td><td>$radio_btns</td></tr>";
                   }
 
-                  else{
-                      //Check date types
-                      $d = DateTime::createFromFormat('Y-m-d', $value);
-                      if($d && $d->format('Y-m-d') === $value)
-                        $input_type = "date";
+                  //Check date types
+                  elseif($column_name === "start_date" || $column_name === "end_date" || $column_name === "period"){
+                    
+                    $input = "<input type='date' name='$column_name' title='$column_name'>";
+                    
+                    if(!empty($value))
+                      $input = "<input type='date' name='$column_name' title='$column_name' value='$value'>";
 
+                    echo "<tr><td><label>$label</label></td><td>$input</td></tr>";
+
+                  }
+
+                  else{
                       echo "<tr><td><label>$label</label></td><td><input type='$input_type' name='$column_name' title='$column_name' value='$value'></td></tr>";
                   }
 	  							 
