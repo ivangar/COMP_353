@@ -102,7 +102,7 @@ require("../backend/events/event_details.php");?>
                   $column_name = $event_location_ids[$label];
                   echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
             }
-            echo "</tbody></table></fieldset>";
+            echo "</tbody></table></fieldset></div>";
           }
 
           if(!empty($event_payment) && sizeof($event_payment) != 0) {
@@ -111,7 +111,7 @@ require("../backend/events/event_details.php");?>
                   $column_name = $event_payment_ids[$label];
                   echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
             }
-            echo "</tbody></table></fieldset>";
+            echo "</tbody></table></fieldset></div>";
           }
 
           if(!empty($event_resources) && sizeof($event_resources) != 0) {
@@ -120,7 +120,7 @@ require("../backend/events/event_details.php");?>
                   $column_name = $event_resources_ids[$label];
                   echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
             }
-            echo "</tbody></table></fieldset>";
+            echo "</tbody></table></fieldset></div>";
           }
 
           if($event_manager){
@@ -129,7 +129,7 @@ require("../backend/events/event_details.php");?>
                     <tbody>
                       <tr>
                       <td><button id='update_event' type='submit'>Update</button></td>
-                      <td><button>Import users</button></td>
+                      <td><button id='import_users' >Import users</button></td>
                       <td><button>View participants</button></td>
                       </tr>
                     </tbody>
@@ -149,10 +149,18 @@ require("../backend/events/event_details.php");?>
   <script type="text/javascript">
 	$(document).ready(function () {
 
-    
+    var users_imported = <?php if(isset($_SESSION['users_imported']) && $_SESSION['users_imported']) {echo "true"; unset($_SESSION['users_imported']);} else echo "false"; ?>;
+    var errors = <?php if(isset($_SESSION['errors'])) {$errors = $_SESSION['errors']; echo "'$errors'"; unset($_SESSION['errors']);} else echo "''"; ?>;
+    if(users_imported) alert("users have been imported successfully");
+    if (errors !== "") alert(errors);
+
+    var event_id = <?php echo "$event_id"; ?>;
+
 		$( "#update_event_form" ).submit(function( event ) {
-			event_data = $("#update_event_form").serializeArray();
+			  event_data = $("#update_event_form").serializeArray();
 		    
+        event.preventDefault();
+
 		    $.ajax({
               url: "../backend/events/update_event.php",
               cache: false,
@@ -167,9 +175,12 @@ require("../backend/events/event_details.php");?>
             .fail(function() {
                 alert("event did not update"); 
             }); //ajax call
+    });
 
-            event.preventDefault();
-        });
+    $("#import_users").click(function (event) {
+        event.preventDefault();
+        window.location.href = "add_users.html?event_id="+event_id;
+    });
       
 	});//end document.ready
   </script>
