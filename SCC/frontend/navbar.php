@@ -19,6 +19,7 @@
 				echo '<a href="admin_create-event.php">Create Event</a>';
 			}
 		?>
+        <a href="../frontend/emails_view.php">Emails</a>
 		<a href="../backend/logout.php">Logout</a>
 	</body>
 
