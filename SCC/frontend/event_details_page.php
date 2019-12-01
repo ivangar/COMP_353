@@ -130,7 +130,8 @@ require("../backend/events/event_details.php");?>
                       <tr>
                       <td><button id='update_event' type='submit'>Update</button></td>
                       <td><button id='import_users' >Import users</button></td>
-                      <td><button>View participants</button></td>
+                      <td><button id='view_participants'>View participants</button></td>
+                      <td><button id='new_participant'>Add new participant</button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -180,6 +181,17 @@ require("../backend/events/event_details.php");?>
     $("#import_users").click(function (event) {
         event.preventDefault();
         window.location.href = "add_users.html?event_id="+event_id;
+    });
+
+    $("#view_participants").click(function (event) {
+        event.preventDefault();
+        var event_name = $('#update_event_form').find('input[name="event_name"]').val();
+        window.location.href = "view_participants.php?event_id="+event_id+"&event_name="+event_name;
+    });
+
+    $("#new_participant").click(function (event) {
+        event.preventDefault();
+        window.location.href = "new_participant.php?event_id="+event_id;
     });
       
 	});//end document.ready
