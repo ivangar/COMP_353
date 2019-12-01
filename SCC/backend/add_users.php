@@ -1,4 +1,6 @@
 <?php
+session_start();
+$event_id = $_GET["event_id"];
 
 if(isset($_POST["submit"]))
 {
@@ -22,8 +24,7 @@ if(isset($_POST["submit"]))
 			$first_name = !empty($data[2]) ? "'$data[2]'" : "NULL";
 			$middle_name = !empty($data[3]) ? "'$data[3]'" : "NULL";
 			$userID = !empty($data[4]) ? "'$data[4]'" : "NULL";
-			echo $data[5];
-			echo "<br>";
+
 			if(empty($data[5]))
 				$pass = "";
 			else
@@ -33,21 +34,54 @@ if(isset($_POST["submit"]))
 			$date_of_birth = !empty($data[8]) ? "'$data[8]'" : "NULL";
 			$org = !empty($data[9]) ? "'$data[9]'" : "NULL";
 			
-			$sql = "INSERT INTO users (last_name, first_name, middle_name, user_ID, user_pwd, address , date_of_birth , email , organization) VALUES ($last_name, $first_name, $middle_name, $userID, $pass ,$address , $date_of_birth, $email, $org )";
-			if ($conn->query($sql) != TRUE) {
-				echo "Error: " . $sql . "<br>" . $conn->error;
+			$sql_user_exists = "SELECT user_id FROM users WHERE user_id = $userID";
+			$result = $conn->query($sql_user_exists);
+			if ($result->num_rows > 0) {
+
+				//Check if the participant is already linked to the event
+				$sql_event_participant = "SELECT * FROM event_participants WHERE event_id = $event_id AND user_id = $userID";
+				$result = $conn->query($sql_event_participant);
+				if ($result->num_rows > 0) {
+					continue;
+				}
+
+				//user might already exist in DB but not linked yet, so just link the user with the event
+				$insert_event_participants = "INSERT INTO event_participants (event_id, user_id, participant_status_id) VALUES ($event_id, $userID, 1)";
+				if ($conn->query($insert_event_participants) != TRUE) {
+					$_SESSION['users_imported'] = false;
+					$_SESSION['errors'] .= " Error: " . $insert_event_participants . " Connection error: " . $conn->error . " ";
+				}
+			    
 			}
+			else{
+				$insert_users = "INSERT INTO users (last_name, first_name, middle_name, user_id, user_pwd, address , date_of_birth , email , organization) VALUES ($last_name, $first_name, $middle_name, $userID, $pass ,$address , $date_of_birth, $email, $org )";
+				if ($conn->query($insert_users) != TRUE) {
+					$_SESSION['users_imported'] = false;
+					$_SESSION['errors'] .= " Error: " . $insert_users . " Connection error: " . $conn->error . " ";
+				}
+
+				$insert_event_participants = "INSERT INTO event_participants (event_id, user_id, participant_status_id) VALUES ($event_id, $userID, 1)";
+				if ($conn->query($insert_event_participants) != TRUE) {
+					$_SESSION['users_imported'] = false;
+					$_SESSION['errors'] .= " Error: " . $insert_event_participants . " Connection error: " . $conn->error . " ";
+				}
+			}
+
 		}
 	  }
-
-	  echo "Copying contents from CSV to mysql complete";
 
 	  fclose($h);
 	  $newFile->deleteFile();
 	  $conn->close();
 
+	  $_SESSION['users_imported'] = true;
+	  header("Location: ../frontend/event_details_page.php?event_id=".$event_id);
+
 	}
-	else
-		echo "file bad";
+	else{
+		$_SESSION['users_imported'] = false;
+		$_SESSION['errors'] .= " Error: File was not uploaded correctly ";
+		header("Location: ../frontend/event_details_page.php?event_id=".$event_id);
+	}
 }
 ?>

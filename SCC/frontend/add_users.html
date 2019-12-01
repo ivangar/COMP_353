@@ -1,15 +1,62 @@
-<table width="600">
-<form action="../backend/add_users.php" method="post" enctype="multipart/form-data">
+<!doctype html>
+<html class="no-js" lang="">
 
-<tr>
-<td width="20%">Select file</td>
-<td width="80%"><input type="file" name="user_file" id="file" /></td>
-</tr>
+<head>
+  <meta charset="utf-8">
+  <title>Add users</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style> 
+    #loading_msg { 
+    	position: absolute;
+  		left: 200px;
+  		top: 35px;
+      	display: none;
+    } 
+</style> 
+</head>
 
-<tr>
-<td>Submit</td>
-<td><input type="submit" name="submit" /></td>
-</tr>
+<body>
+	<div id="loading_msg"><img src="images/spinner.gif" height="75" width="75"></div>
+	<table width="600">
+	<form action="../backend/add_users.php" method="post" name="add_users_form" id="add_users_form" enctype="multipart/form-data">
+	<tr>
+	<td width="20%">Select file</td>
+	<td width="80%"><input type="file" name="user_file" id="file" /></td>
+	</tr>
 
-</form>
-</table>
+	<tr>
+	<td>Submit</td>
+	<td><input type="submit" name="submit" /></td>
+	</tr>
+
+	</form>
+	<tr>
+	<td></td>
+	<td><button onclick="goBack()">Cancel</button></td>
+	</tr>
+
+	</table>
+	  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	  <script type="text/javascript">
+		$(document).ready(function () {
+
+		    window.onload = function() {
+		    	var urlParams = new URLSearchParams(window.location.search);
+				var event_id = urlParams.get('event_id');
+				document.add_users_form.action = "../backend/add_users.php?event_id="+event_id;
+		    }
+
+			function goBack() {
+			  window.history.back();
+			}
+	      
+	      	$( "#add_users_form" ).submit(function( event ) {
+	      		$("#loading_msg").show(100); 
+	      	});
+		});//end document.ready
+
+		</script>
+</body>
+
+</html>
