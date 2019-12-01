@@ -46,7 +46,7 @@ if(isset($_POST["submit"]))
 				}
 
 				//user might already exist in DB but not linked yet, so just link the user with the event
-				$insert_event_participants = "INSERT INTO event_participants (event_id, user_id) VALUES ($event_id, $userID)";
+				$insert_event_participants = "INSERT INTO event_participants (event_id, user_id, participant_status_id) VALUES ($event_id, $userID, 1)";
 				if ($conn->query($insert_event_participants) != TRUE) {
 					$_SESSION['users_imported'] = false;
 					$_SESSION['errors'] .= " Error: " . $insert_event_participants . " Connection error: " . $conn->error . " ";
@@ -60,7 +60,7 @@ if(isset($_POST["submit"]))
 					$_SESSION['errors'] .= " Error: " . $insert_users . " Connection error: " . $conn->error . " ";
 				}
 
-				$insert_event_participants = "INSERT INTO event_participants (event_id, user_id) VALUES ($event_id, $userID)";
+				$insert_event_participants = "INSERT INTO event_participants (event_id, user_id, participant_status_id) VALUES ($event_id, $userID, 1)";
 				if ($conn->query($insert_event_participants) != TRUE) {
 					$_SESSION['users_imported'] = false;
 					$_SESSION['errors'] .= " Error: " . $insert_event_participants . " Connection error: " . $conn->error . " ";
