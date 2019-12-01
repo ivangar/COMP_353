@@ -39,11 +39,10 @@ $target_file = $target_dir . $randomNumber . $randomWord . "." . $imageFileType;
 
 // if everything is ok, try to save file to server and insert 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     $upload_image = $randomNumber . $randomWord . "." . $imageFileType;
     $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
-
+        header("location: ../frontend/event_home.php?event_id=" . $event_id);
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -52,7 +51,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $upload_image = NULL;
     $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
-        echo "successful add to db";
+        header("Location: ../frontend/event_home.php?event_id=$event_id");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

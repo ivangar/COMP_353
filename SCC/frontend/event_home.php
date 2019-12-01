@@ -7,8 +7,7 @@ if(isset($_SESSION['error'])){
 	$error = $_SESSION['error'];
 	echo "<span>$error</span>";
 }
-
-
+$event_id = $_GET['event_id'];
 
 include("post-content.php");
 include("display-post.php");
