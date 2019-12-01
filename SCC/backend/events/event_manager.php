@@ -32,7 +32,8 @@ if ($result->num_rows > 0) {
             $status = 'active';
     		$event_details_url = "<a href='event_details_page.php?event_id=" . $row["event_id"] . "'>view details</a>";
     	}
-    	$event_info = array($row["event_id"],$row["event_name"],$row["start_date"],$row["end_date"],$status,$event_details_url);
+        $event_name = "<a href='event_home.php?event_id=" . $row["event_id"] . "'>" . $row['event_name'] . "</a>";
+    	$event_info = array($row["event_id"],$event_name,$row["start_date"],$row["end_date"],$status,$event_details_url);
     	array_push($event_rows,$event_info);
     	$event_info = array();
     }
