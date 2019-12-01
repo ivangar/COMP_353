@@ -5,6 +5,7 @@ $password = "";
 $db = "scc_db";
 
 
+
 // Creating connection
 $conn = new mysqli($servername, $username, $password);
 
