@@ -12,8 +12,8 @@ if(!isset($_SESSION)){
 $user_id = $_SESSION['active_user']['user_id'];
 $user_name = $_SESSION['active_user']['first_name'];
 
-if(isset($roleId) && $roleId != 0) {
-    $sql = "SELECT * FROM events WHERE event_manager_id = $user_id";
+if(isset($roleId) && $roleId == 0) {
+    $sql = "SELECT * FROM events";
 }
 else {
     $sql = "SELECT `e`.`event_id`,`e`.`primary_event_group_id` , `e`.`status`, `e`.`event_name`, `e`.`start_date`, `e`.`end_date`, `group_members`.`user_id`     \n"
