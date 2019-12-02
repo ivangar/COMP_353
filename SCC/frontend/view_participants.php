@@ -1,6 +1,7 @@
 <?php 
-$event_id = $_GET["event_id"];
-$event_name = $_GET["event_name"];
+$group_id = $_GET["group_id"];
+$group_name = $_GET["group_name"];
+$group_manager = $_GET["group_manager"];
 require("navbar.php");
 require("../backend/users/get_users.php");
 ?>
@@ -31,8 +32,7 @@ require("../backend/users/get_users.php");
 </head>
 
 <body>
-  <?php echo "<a class='right' href='event_details_page.php?event_id=".$event_id."'>Go Back</a>";?>
-  <h3><?php echo $event_name; ?> participants</h3>
+  <h3><?php echo $group_name; ?> participants</h3>
 
   <?php if(!empty($participants) && sizeof($participants) != 0) {  ?>
 	<table cellpadding="10" style="text-align: left;">

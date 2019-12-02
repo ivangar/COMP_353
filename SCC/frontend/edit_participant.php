@@ -1,7 +1,7 @@
 <?php 
 $user_id = $_GET["user_id"];
-$event_id = $_GET["event_id"];
-$event_name = $_GET["event_name"];
+$group_id = $_GET["group_id"];
+$group_name = $_GET["group_name"];
 require("navbar.php");
 require("../backend/users/participant.php");
 ?>
@@ -41,14 +41,14 @@ require("../backend/users/participant.php");
 
 <body>
 
-  <?php echo "<a class='right' href='view_participants.php?event_id=".$event_id."&event_name=".$event_name."'>Go Back</a>";?>
+  <?php echo "<a href='view_participants.php?group_id=".$group_id."&group_manager=1&group_name=".$group_name."'>Go Back</a>";?>
   <h3>Edit participant's information</h3>
 
   	<div class="container">
 	  	<form action="../backend/users/update_participant.php" method="post" name="update_participant_form" id="update_participant_form" accept-charset="utf-8">
         
 			<?php 
-			 echo "<input type='hidden' name='event_id' value='$event_id'>
+			 echo "<input type='hidden' name='group_id' value='$group_id'>
              <input type='hidden' name='user_id' value='$user_id'>
              <input type='hidden' name='action' value='update_participant'>";
 
@@ -110,8 +110,8 @@ require("../backend/users/participant.php");
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script type="text/javascript">
 	$(document).ready(function () {
-    var event_id = <?php echo "$event_id"; ?>;
-    var event_name = <?php echo "'$event_name'"; ?>;
+    var group_id = <?php echo "$group_id"; ?>;
+    var group_name = <?php echo "'$group_name'"; ?>;
 
 		$( "#update_participant_form" ).submit(function( event ) {
 			  participant_data = $("#update_participant_form").serializeArray();
@@ -127,7 +127,7 @@ require("../backend/users/participant.php");
             .done(function( data ) {
              	if(data === "updated"){
                 alert("participant has been updated");
-                window.location.href = "view_participants.php?event_id="+event_id+"&event_name="+event_name;
+                window.location.href = "view_participants.php?group_id="+group_id+"&group_manager=1&group_name="+group_name;
               } 
                 else alert(data);
             })
