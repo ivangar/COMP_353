@@ -29,7 +29,7 @@ else {
 $result = $conn->query($sql);
 $event_rows = array();
 
-if ($result->num_rows > 0) {
+if ($result && $result->num_rows > 0) {
 	
     // output data of each row
     while($row = $result->fetch_assoc()) {
