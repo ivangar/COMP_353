@@ -1,8 +1,8 @@
 <?php
-$servername = "grc353.encs.concordia.ca";
-$username = "grc353_2";
-$password = "kMT6E6";
-$db = "grc353_2";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db = "scc_db";
 
 
 
@@ -17,5 +17,5 @@ if ($conn->connect_error) {
 /*else{
     echo "Connected successfully";
 }*/
-$conn->select_db($db);
+$conn->select_db('scc_db');
 ?>
