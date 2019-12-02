@@ -1,6 +1,7 @@
 <?php 
 require("../backend/connection.php");
-require("../backend/events/event_details.php");?>
+require("../backend/events/event_details.php");
+require("navbar.php");?>
 
 <!doctype html>
 <html class="no-js" lang="">

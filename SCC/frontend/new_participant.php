@@ -1,6 +1,7 @@
 <?php 
 session_start();
 $event_id = $_GET["event_id"];
+$participant_data = array();
 require("navbar.php");
 ?>
 
@@ -61,7 +62,6 @@ require("navbar.php");
       </div>
 
 	  	<form action="../backend/users/update_participant.php" method="post" name="add_participant_form" id="add_participant_form" accept-charset="utf-8">
-      
       <fieldset>
         <table cellpadding="10" style="text-align: left;">
           <tbody>
@@ -115,20 +115,22 @@ require("navbar.php");
     var event_id = <?php echo "$event_id"; ?>;
 
 		$( "#add_participant_form" ).submit(function( event ) {
-			  participant_data = $("#add_participant_form").serializeArray();
+        
         event.preventDefault();
+			  var user_id = <?php if(!empty($participant_data)) { $user_id = $participant_data['user_id']; echo "$user_id"; } else echo 0; ?>        
+        event_participant = { "action": "add_participant", "user_id": user_id, "event_id": event_id};
 
         $.ajax({
               url: "../backend/users/update_participant.php",
               cache: false,
               type: "POST",
               dataType: "html",
-              data: participant_data
+              data: event_participant
             }) 
             .done(function( data ) {
-             	if(data === "updated"){
-                alert("participant has been updated");
-                window.location.href = "view_participants.php?event_id="+event_id+"&event_name="+event_name;
+              if(data === "success"){
+                alert("participant has been added to the event");
+                window.location.href = "event_details_page.php?event_id="+event_id;
               } 
                 else alert(data);
             })
