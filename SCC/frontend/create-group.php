@@ -1,10 +1,3 @@
-<?php
-require "HotReloader.php";
-use HotReloader\HotReloader;
-$reloader = new HotReloader();
-$reloader->init();
-$event_id;
-?>
 <!DOCTYPE html>
 <html>
 <head>
