@@ -1,13 +1,16 @@
 <?php 
-require("../backend/connection.php");
-require("../backend/events/event_manager.php");?>
+$event_id = $_GET["event_id"];
+$event_name = $_GET["event_name"];
+require("navbar.php");
+require("../backend/users/get_users.php");
+?>
 
 <!doctype html>
 <html class="no-js" lang="">
 
 <head>
   <meta charset="utf-8">
-  <title>Event manager page</title>
+  <title>View Participants</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,7 +19,10 @@ require("../backend/events/event_manager.php");?>
 
   <meta name="theme-color" content="#fafafa">
   <style type="text/css">
-    .right {
+     h3{ 
+  		text-align: center; 
+  	}
+  	.right {
       position: absolute;
       right: 0px;
       padding: 10px;
@@ -25,31 +31,31 @@ require("../backend/events/event_manager.php");?>
 </head>
 
 <body>
-  <h3>Welcome <?php echo $user_name; ?>!</h3>
+  <?php echo "<a class='right' href='event_details_page.php?event_id=".$event_id."'>Go Back</a>";?>
+  <h3><?php echo $event_name; ?> participants</h3>
 
-  <?php if(!empty($event_rows) && sizeof($event_rows) != 0) {  ?>
-   <p> You're the Event Manager of the following events:</p>
+  <?php if(!empty($participants) && sizeof($participants) != 0) {  ?>
 	<table cellpadding="10" style="text-align: left;">
-		<caption>Events</caption>
 	    <thead>
 		    <tr>
-		      <th>Event Id</th>
-		      <th>Event Name</th>
-		      <th>Start Date</th>
-		      <th>End Date</th>
+		      <th>Participant Name</th>
+		      <th>Address</th>
+		      <th>Date of birth</th>
+		      <th>Email</th>
+		      <th>Organization</th>
 		      <th>Status</th>
 		      <th></th>
 		    </tr>
 		</thead>
 	  	<tbody>
-	  		<?php foreach($event_rows as $row){ 
+	  		<?php foreach($participants as $row){ 
 	  				echo "<tr>"; 
-	  				foreach($row as $event_attr){ echo "<td>$event_attr</td>"; } 
+	  				foreach($row as $participant_attr){ echo "<td>$participant_attr</td>"; } 
 	  			  	echo "</tr>"; 
 	  		}?>
 		</tbody>
 	</table>
-  <?php }?>
+  <?php } else { echo "<h4> This event does not have participants </h4>"; }?>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </body>
 

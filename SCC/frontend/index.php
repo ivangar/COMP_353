@@ -6,7 +6,7 @@
 session_start();
 if(isset($_SESSION['active_user']))
 {
-	echo "welcome " . $_SESSION['active_user']['first_name'];
+	header("Location: dashboard.php");
 }
 else
 {

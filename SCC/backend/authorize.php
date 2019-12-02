@@ -23,7 +23,6 @@
 				session_start();
 				$_SESSION['active_user'] = $row;
 				header('Location: ../frontend/dashboard.php');
-
 		  }
 		  else
 			  "invalid password";

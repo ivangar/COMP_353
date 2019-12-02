@@ -1,0 +1,16 @@
+.chat-log {
+	overflow: auto;
+    height:400px;
+    width:100%;
+}
+.chat-log-item {
+	padding: 10px;
+	margin: 0 auto 20px;
+	max-width: 80%;
+	float: left;
+	border-radius: 4px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	clear: both;
+}
+
+
