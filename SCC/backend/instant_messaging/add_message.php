@@ -3,9 +3,11 @@ include "../connection.php";
 
 session_start();
 
-$group_id = $_POST['group_id'];
+$data = json_decode(file_get_contents("php://input"), true);
+
 $user_id = $_SESSION['active_user']['user_id'];
-$message = $_POST['message'];
+$group_id = $data['group_id'];
+$message = $data['message'];
 
 // TODO: do if user_id exists in the group. else no
 

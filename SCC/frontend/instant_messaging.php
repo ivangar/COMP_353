@@ -28,14 +28,14 @@ http://comp_353.test/SCC/frontend/instant_messaging.php?group_id=1
             </div>
             <div class="bg-light p-4 border-top">
                 <div class="container ">
-                    <form class="form-horizontal" onsubmit="addMessage(); return false;">
+                    <form class="form-horizontal">
                         <div class="row">
                             <div class="col-sm-9 p-2">
                                 <textarea class="form-control" rows="3" name="message" id="message" placeholder="message"></textarea>
-                                <input type="hidden" name="group_id" value="<?php echo $_GET['group_id']; ?>">
+                                <input type="hidden" id="group_id" name="group_id" value="<?php echo $_GET['group_id']; ?>">
                             </div>
                             <div class="col-sm-3 p-2">
-                                <button type="submit" class="btn btn-primary btn-block">Send</button>
+                                <button type="button" onclick="addMessage(); return false;" class="btn btn-primary btn-block">Send</button>
                             </div>
                         </div>
                     </form>
@@ -54,40 +54,37 @@ http://comp_353.test/SCC/frontend/instant_messaging.php?group_id=1
     // gets messags recursively and asynchronously every 3 seconds
     function getMessage(){
         axios
-            .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+            .get('../backend/instant_messaging/get_messages.php/?group_id='+ document.getElementById('group_id').value)
             .then(res => {
                 setChatBox(res);
-                setTimeout(function() { getMessage(); }, 3000);
+                setTimeout(function() { getMessage(); }, 1000);
                 })
             .catch(err => console.error(err));
     }
 
     function addMessage() {
-    axios
-        .post('https://jsonplaceholder.typicode.com/todos', {
+        axios
+            .post('../backend/instant_messaging/add_message.php', {
 
-        // group_id: document.getElementById('group_id').value,
-        // message: document.getElementById('message').value,
+            group_id: document.getElementById('group_id').value,
+            message: document.getElementById('message').value
+            })
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
 
-        //remove both these line and replace with ^r
-        title: document.getElementById('message').value,
-        completed: false
-        })
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
+        document.getElementById('message').value = ''
     }
 
     function setChatBox(res){
         var chatMessages = "";
-
+        console.log(res);
         res.data.forEach(function(item){
-            chatMessages = chatMessages.concat( "<div class='chat-log-item bg-light'>" +
-                                                    "<h6 class='font-weight-bold'>Siamak <small class='pl-1'>3:30</small></h6>" +
-                                                    "<div>"+item.title+"</div>" +
-                                                "</div>");
+            chatMessages = "<div class='chat-log-item bg-light'>" +
+                                "<h6 class='font-weight-bold'>"+item.first_name+" <small class='pl-1'>"+item.time+"</small></h6>" +
+                                "<div>"+item.message+"</div>" +
+                            "</div>" + chatMessages ;
             console.log(item.title);
         });
-
         document.getElementById("chat-log").innerHTML = chatMessages;
 
     }
