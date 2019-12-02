@@ -1,2 +1,4 @@
 
-SCC/frontend/HotReloader.php
+SCgit rm -r --cached .
+SCCC/frontend/HotReloader.php
+SCC/backend/connection.php

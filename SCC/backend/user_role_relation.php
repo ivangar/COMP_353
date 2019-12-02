@@ -34,10 +34,12 @@ Returned data:
 	    . "WHERE userId = $userid";
 
 	$result = $conn->query($sql);
-	while ($row = $result->fetch_assoc()) {
-		$userId = $row['user_id'];
-		$groupId= $row['groupId'];
-		$roleId = $row['roleId'];
+	if($result){
+		while ($row = $result->fetch_assoc()) {
+			$userId = $row['user_id'];
+			$groupId= $row['groupId'];
+			$roleId = $row['roleId'];
+		}
 	}
 
 

@@ -16,7 +16,15 @@ if(isset($roleId) && $roleId != 0) {
     $sql = "SELECT * FROM events WHERE event_manager_id = $user_id";
 }
 else {
-    $sql = "SELECT * FROM events"; 
+    $sql = "SELECT `e`.`event_id`,`e`.`primary_event_group_id` , `e`.`status`, `e`.`event_name`, `e`.`start_date`, `e`.`end_date`, `group_members`.`user_id`     \n"
+
+    . "FROM `events` AS `e`\n"
+
+    . "INNER JOIN `groups` ON `e`.`primary_event_group_id` = `groups`.`group_id`\n"
+
+    . "INNER JOIN `group_members`ON `groups`.`group_id` = `group_members`.`group_id`\n"
+
+    . "WHERE `group_members`.`user_id` = $user_id AND (`e`.`status` = 1 OR `e`.`event_manager_id` = $user_id)"; 
 }
 $result = $conn->query($sql);
 $event_rows = array();
