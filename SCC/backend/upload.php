@@ -12,6 +12,7 @@ function generateRandomString($length = 10) {
 }
 // posted data
 $event_id = htmlspecialchars($_POST['event_id']);
+$group_id = htmlspecialchars($_POST['group_id']);
 $post_permission = htmlspecialchars($_POST['permission_type']);
 if($_POST["contentToUpload"] != "") {
     $upload_text = $_POST["contentToUpload"];
@@ -42,7 +43,8 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $upload_image = $randomNumber . $randomWord . "." . $imageFileType;
     $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
-        header("location: ../frontend/event_home.php?event_id=" . $event_id);
+        header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
+
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -51,13 +53,13 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $upload_image = NULL;
     $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
-        header("Location: ../frontend/event_home.php?event_id=$event_id");
+        header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 } else {
     $_SESSION['error'] = "No Data Posted. Please upload an image or enter text.";
-    header("location: ../frontend/event_home.php?event_id=" . $event_id);
+        header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
 }
 
 $conn->close();

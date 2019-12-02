@@ -15,7 +15,7 @@
 
 		<a href="dashboard.php">Home</a>
 		<?php
-			if($roleId == 0) {
+			if(isset($roleId) && $roleId == 0) {
 				echo '<a href="admin_create-event.php">Create Event</a>';
 			}
 		?>
