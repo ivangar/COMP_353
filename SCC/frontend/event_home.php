@@ -9,6 +9,10 @@ if(isset($_SESSION['error'])){
 }
 $event_id = $_GET['event_id'];
 
+include("navbar.php");
+if(isset($_GET['create-group']) && $_GET['create-group'] == "true"){
+	include("create-group.php");
+}
 include("post-content.php");
 include("display-post.php");
 
