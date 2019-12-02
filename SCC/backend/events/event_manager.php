@@ -12,7 +12,7 @@ if(!isset($_SESSION)){
 $user_id = $_SESSION['active_user']['user_id'];
 $user_name = $_SESSION['active_user']['first_name'];
 
-if($roleId != 0) {
+if(isset($roleId) && $roleId != 0) {
     $sql = "SELECT * FROM events WHERE event_manager_id = $user_id";
 }
 else {
@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
             $status = 'active';
     		$event_details_url = "<a href='event_details_page.php?event_id=" . $row["event_id"] . "'>view details</a>";
     	}
-        $event_name = "<a href='event_home.php?event_id=" . $row["event_id"] . "'>" . $row['event_name'] . "</a>";
+        $event_name = "<a href='event_home.php?event_id=" . $row["event_id"] . "&group_id=" . $row["primary_event_group_id"] . "'>" . $row['event_name'] . "</a>";
     	$event_info = array($row["event_id"],$event_name,$row["start_date"],$row["end_date"],$status,$event_details_url);
     	array_push($event_rows,$event_info);
     	$event_info = array();
