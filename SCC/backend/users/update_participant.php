@@ -53,6 +53,25 @@
 
 			if($updated_tables == 2) echo "updated";
 
+		}
+
+		if($_POST['action'] === 'add_participant'){
+
+			//Setting up post params
+			
+			$data = $_POST;
+			$event_id = $data['event_id'];
+			$user_id = $data['user_id'];
+
+			//user might already exist in DB but not linked yet, so just link the user with the event
+			$insert_event_participants = "INSERT INTO event_participants (event_id, user_id, participant_status_id) VALUES ($event_id, $user_id, 1)";
+			if ($conn->query($insert_event_participants) != TRUE) {
+				echo "error " . $conn->error;
+			}
+			else {
+			    echo "success";
+			}
+
 		}	
 	}
 ?>

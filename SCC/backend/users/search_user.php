@@ -22,7 +22,7 @@
 		else{
 		    // fill in participant info
 		    while($row = $search_result->fetch_assoc()) {
-		    	$_SESSION['participant_data'] = array("First Name"=>$row["first_name"],"Last Name"=>$row["last_name"],"Middle Name"=>$row["middle_name"],"Address"=>$row["address"],"Date of birth"=>$row["date_of_birth"],"Email"=>$row["email"],"Organization"=>$row["organization"]);	
+		    	$_SESSION['participant_data'] = array("user_id"=>$user_id,"First Name"=>$row["first_name"],"Last Name"=>$row["last_name"],"Middle Name"=>$row["middle_name"],"Address"=>$row["address"],"Date of birth"=>$row["date_of_birth"],"Email"=>$row["email"],"Organization"=>$row["organization"]);	
 		    }
 		}
 
