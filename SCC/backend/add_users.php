@@ -1,6 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)) { session_start(); }
 $event_id = $_GET["event_id"];
+$location = "Location: ../frontend/event_details_page.php?event_id=$event_id" ;
 
 if(isset($_POST["submit"]))
 {
@@ -75,13 +76,13 @@ if(isset($_POST["submit"]))
 	  $conn->close();
 
 	  $_SESSION['users_imported'] = true;
-	  header("Location: ../frontend/event_details_page.php?event_id=".$event_id);
+	  header($location);
 
 	}
 	else{
 		$_SESSION['users_imported'] = false;
 		$_SESSION['errors'] .= " Error: File was not uploaded correctly ";
-		header("Location: ../frontend/event_details_page.php?event_id=".$event_id);
+		header($location);
 	}
 }
 ?>

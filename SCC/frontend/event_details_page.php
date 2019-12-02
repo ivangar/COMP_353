@@ -181,7 +181,7 @@ require("navbar.php");?>
 
     $("#import_users").click(function (event) {
         event.preventDefault();
-        window.location.href = "add_users.html?event_id="+event_id;
+        window.location.href = "import_users.php?event_id="+event_id;
     });
 
     $("#view_participants").click(function (event) {
