@@ -1,10 +1,4 @@
 <?php
-require "HotReloader.php";
-use HotReloader\HotReloader;
-$reloader = new HotReloader();
-$reloader->init();
-$event_id;
-
 include("../backend/retrieve-posts.php");
 ?>
 <!DOCTYPE html>
