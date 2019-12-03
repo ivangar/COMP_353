@@ -45,6 +45,28 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     if($conn->query($sql) === TRUE) {
         header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
 
+        // Send email to all users in event
+        $sql_event_participant = "SELECT * FROM event_participants WHERE event_id = $event_id";
+
+        $participants = $conn->query($sql_event_participant);
+        if($participants->num_rows != 0) {
+
+            for ($x = 0; $x < $participants->num_rows; $x++) {
+                $participant = $participants->fetch_assoc();
+
+                $send_email = "INSERT INTO emails(receiver_id, sender_id, title, body) VALUES ("
+                    . $participant["user_id"]
+                    .",". $_SESSION['active_user']['user_id']
+                    . ", \"Event post\", \"A post has been made into your event "
+                    . $event_id
+                    . "\")";
+
+                if ($conn->query($send_email) != TRUE) {
+                    $_SESSION['errors'] .= " Error: emails could not be send after post was uploaded";
+                }
+            }
+        }
+
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -54,6 +76,29 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
         header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
+
+        // Send email to all users in event
+        $sql_event_participant = "SELECT * FROM event_participants WHERE event_id = $event_id";
+
+        $participants = $conn->query($sql_event_participant);
+        if($participants->num_rows != 0) {
+
+            for ($x = 0; $x < $participants->num_rows; $x++) {
+                $participant = $participants->fetch_assoc();
+
+                $send_email = "INSERT INTO emails(receiver_id, sender_id, title, body) VALUES ("
+                    . $participant["user_id"]
+                    .",". $_SESSION['active_user']['user_id']
+                    . ", \"Event post\", \"A post has been made into your event "
+                    . $event_id
+                    . "\")";
+
+                if ($conn->query($send_email) != TRUE) {
+                    $_SESSION['errors'] .= " Error: emails could not be send after post was uploaded";
+                }
+            }
+        }
+
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
