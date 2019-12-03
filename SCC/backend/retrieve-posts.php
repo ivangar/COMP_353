@@ -12,7 +12,7 @@ if(!isset($userid)){
     $_SESSION['error'] = "Error - No user logged in";
 }
 
-$sql = "SELECT users.first_name, users.middle_name, users.last_name, posts.post_content, posts.post_image, posts.upload_date, posts.post_permission FROM posts INNER JOIN users on posts.user_id = users.user_id WHERE posts.event_id = $event_id ORDER BY posts.upload_date DESC";
+$sql = "SELECT users.first_name, users.middle_name, users.last_name, posts.post_content, posts.post_image, posts.upload_date, posts.post_permission FROM posts INNER JOIN users on posts.user_id = users.user_id WHERE posts.group_id = $group_id ORDER BY posts.upload_date DESC";
 
 
 $result = $conn->query($sql);
