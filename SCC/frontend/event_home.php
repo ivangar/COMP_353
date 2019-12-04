@@ -3,6 +3,12 @@
 if(!isset($_SESSION)){
     session_start();
 }
+
+require "HotReloader.php";
+use HotReloader\HotReloader;
+$reloader = new HotReloader();
+$reloader->init();
+
 if(isset($_SESSION['error'])){
 	$error = $_SESSION['error'];
 	echo "<span>$error</span>";
