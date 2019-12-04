@@ -18,7 +18,7 @@
 		
 		while ($row = $result->fetch_assoc()) {
 
-		  if(password_verify($pass,$row['user_pwd']))
+		  if($pass == $row['user_pwd'])
 		  {
 				session_start();
 				$_SESSION['active_user'] = $row;
