@@ -1,10 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "scc_db";
-
-
+$servername = "grc353.encs.concordia.ca";
+$username = "grc353_2";
+$password = "kMT6E6";
+$db = "grc353_2";
 
 // Creating connection
 $conn = new mysqli($servername, $username, $password);
@@ -15,7 +13,6 @@ if ($conn->connect_error) {
 }
 //For now I commented these, cauz it was printing the successful message every time
 /*else{
-    echo "Connected successfully";
+echo "Connected successfully";
 }*/
-$conn->select_db('scc_db');
-?>
+$conn->select_db($db);
