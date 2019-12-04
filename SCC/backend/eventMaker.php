@@ -55,7 +55,7 @@ if($conn->query($sql) === TRUE) {
 	$event_id = $conn->insert_id;
 }
 
-$sql = "INSERT INTO groups (event_id, name, details) VALUES ($event_id, $event_name, 'Main event group')";
+$sql = "INSERT INTO `groups` (event_id, name, details) VALUES ($event_id, $event_name, 'Main event group')";
 
 if($conn->query($sql) === TRUE) {
 	$group_id = $conn->insert_id;

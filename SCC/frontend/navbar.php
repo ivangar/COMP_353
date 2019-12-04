@@ -1,5 +1,15 @@
 <?php
 	include("../backend/user_role_relation.php");
+	//start session
+if(!isset($_SESSION)){
+    session_start();
+}
+//check that user is logged in
+if(isset($userid)){
+    $userid = $_SESSION['active_user']['user_id'];
+} else {
+    $_SESSION['error'] = "Error - No user logged in";
+}
 ?>
 <html>
 	<head>
@@ -21,6 +31,7 @@
 				$params = "?event_id=" . $_GET['event_id'] . "&group_id=" . $_GET['group_id'] . "&create-group=true";
 				echo '<a href="event_home.php' . $params . '">Create Group</a>';
 			}
+
 		?>
         <a href="../frontend/emails_view.php">Emails</a>
 		<a href="../backend/logout.php">Logout</a>

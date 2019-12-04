@@ -36,12 +36,12 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $target_file = $target_dir . $randomNumber . $randomWord . "." . $imageFileType;
-// Allow certain file formats
+
 
 // if everything is ok, try to save file to server and insert 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $upload_image = $randomNumber . $randomWord . "." . $imageFileType;
-    $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
+    $sql = "INSERT INTO posts (group_id, user_id, post_content, post_image, post_permission) VALUES ('$group_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
         header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
 
@@ -73,7 +73,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
 } else if (isset($upload_text)) {
     $upload_image = NULL;
-    $sql = "INSERT INTO posts (event_id, user_id, post_content, post_image, post_permission) VALUES ('$event_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
+    $sql = "INSERT INTO posts (group_id, user_id, post_content, post_image, post_permission) VALUES ('$group_id', '$userid', '$upload_text', '$upload_image', '$post_permission')";
     if($conn->query($sql) === TRUE) {
         header("Location: ../frontend/event_home.php?event_id=$event_id&group_id=$group_id");
 
