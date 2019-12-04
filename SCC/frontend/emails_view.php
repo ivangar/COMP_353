@@ -6,6 +6,7 @@
             }
         </script>
         <?php
+            include("navbar.php");
             include ("../backend/emails.php");
             $emails = getEmails();
 
@@ -28,7 +29,7 @@
                     $email = $emails->fetch_assoc();
 
                     echo "<tr><td>";
-                    echo $email["sender"];
+                    echo $email["sender_email"];
                     echo "</td>";
 
                     echo "<td>";
@@ -40,7 +41,7 @@
                     echo "</td>";
 
                     echo '<td><input type="button" onclick=\'alertFunction(';
-                    echo "\"".$email["sender"];
+                    echo "\"".$email["sender_email"];
                     echo "\",\"";
                     echo $email["title"];
                     echo "\",\"";

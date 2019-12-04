@@ -1,34 +1,12 @@
-<?php	
-	include ("connection.php");
+<?php 
 
-	$username = "'" . $_POST["login_username"] . "'";
-	//$pass = "'". password_hash($_POST["login_password"], PASSWORD_BCRYPT). "'";
-	$pass = $_POST["login_password"];
+if(!isset($_SESSION)) {
+	session_start();
+}
 
-	$sql = "SELECT * from users Where user_id = $username";
-
-
-	$result = $conn->query($sql);
+if(!isset($_SESSION['active_user'])) {
 	
-	if($result != true)
-		echo "Error: " . $sql . "<br>" . $conn->error;
-
-	
-	if ($result->num_rows == 1) {
-		
-		while ($row = $result->fetch_assoc()) {
-
-		  if(password_verify($pass,$row['user_pwd']))
-		  {
-				session_start();
-				$_SESSION['active_user'] = $row;
-				header('Location: ../frontend/dashboard.php');
-		  }
-		  else
-			  "invalid password";
-		}
-	}
-	else 
-		echo "Error: incorrect login";	
-	$conn->close();
+	$_SESSION['error'] = "no_login";
+	header('Location: ../frontend/index.php');
+}
 ?>

@@ -20,6 +20,14 @@ include("../backend/retrieve-posts.php");
 			justify-content: space-between;
 			width: 100%;
 		}
+		.comment {
+			width: 100%;
+			margin-top: 10px;
+		}
+		.comment > div {
+			display: flex;
+			justify-content: space-between;
+		}
 	</style>
 </head>
 <body>

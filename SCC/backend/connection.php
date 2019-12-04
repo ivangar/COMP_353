@@ -1,8 +1,4 @@
 <?php
-$servername = "grc353.encs.concordia.ca";
-$username = "grc353_2";
-$password = "kMT6E6";
-$db = "grc353_2";
 
 // Creating connection
 $conn = new mysqli($servername, $username, $password);
