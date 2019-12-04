@@ -4,7 +4,6 @@
 	$username = "'" . $_POST["login_username"] . "'";
 	//$pass = "'". password_hash($_POST["login_password"], PASSWORD_BCRYPT). "'";
 	$pass = $_POST["login_password"];
-
 	$sql = "SELECT * from users Where user_id = $username";
 
 

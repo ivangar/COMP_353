@@ -6,8 +6,8 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 //$password = "kMT6E6";
-//$db = "scc_db";
-$db = "grc353_2";
+$db = "scc_db";
+//$db = "grc353_2";
 
 
 
