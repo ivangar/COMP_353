@@ -47,7 +47,7 @@ if(isset($_POST["submit"]))
 						$sql_user_exists = "SELECT user_id FROM users WHERE user_id = $userID";
 						$result = $conn->query($sql_user_exists);
 						if ($result->num_rows > 0) {
-
+              
 							//Check if the participant is already linked to the event
 							$sql_event_participant = "SELECT * FROM group_members WHERE group_id = $group_id AND user_id = $userID";
 							$result = $conn->query($sql_event_participant);
@@ -75,9 +75,20 @@ if(isset($_POST["submit"]))
 								$_SESSION['users_imported'] = false;
 								$_SESSION['errors'] .= " Error: " . $insert_event_participants . " Connection error: " . $conn->error . " ";
 							}
+              
 						}
+            
+              // Send email to added user
+              $send_email = "INSERT INTO emails(receiver_id, sender_id, title, body) VALUES ("
+                  . $userID.",". $_SESSION['active_user']['user_id']
+                  . ", \"Event invitation\", \"You have been invited to event "
+                  . $event_id
+                  ." and have been added to this event, if you wish to leave the event, go to events page and select leave event.\")";
 
-					}
+              if ($conn->query($send_email) != TRUE) {
+                  $_SESSION['errors'] .= " Error: emails could not be send after importing user from csv";
+              }
+					  }
 				  }
 
 		    } 
