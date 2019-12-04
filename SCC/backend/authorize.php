@@ -6,8 +6,6 @@
 	$pass = $_POST["login_password"];
 
 	$sql = "SELECT * from users Where user_id = $username";
-
-
 	$result = $conn->query($sql);
 	
 	if($result != true)
@@ -18,7 +16,7 @@
 		
 		while ($row = $result->fetch_assoc()) {
 
-		  if($pass == $row['user_pwd'])
+		  if(password_verify($pass,$row['user_pwd']))
 		  {
 				session_start();
 				$_SESSION['active_user'] = $row;

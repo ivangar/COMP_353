@@ -9,9 +9,9 @@
     $title = "'" . $_POST["email_title"] . "'";
     $body = "'" . $_POST["email_body"] . "'";
 
-    $sql = "Insert into emails(receiver_id, sender_id, title, body) Select "
+    $sql = "Insert into emails(receiver_id, sender_email, title, body) Select "
             . "u.user_id, "
-            . $_SESSION["active_user"]["user_id"]
+            . $_SESSION["active_user"]["email"]
             . ", "
             . $title
             . ", "
