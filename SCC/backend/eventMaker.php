@@ -6,6 +6,8 @@ $event_fee = $_POST['event_fee'];
 $event_payment_id = 0;
 $resource_id = 0;
 $location_id = 0;
+$event_id = 0;
+$group_id = 0;
 
 switch ($_POST["event_type"]) {
 	case 'non-profit_recurrent':
@@ -50,11 +52,22 @@ if($conn->query($sql) === TRUE) {
 $sql = "INSERT INTO events (event_payment_id, event_type_id, resource_id, event_manager_id, location_id, event_name, status, total_cost) VALUES ($event_payment_id, $event_type_id, $resource_id, $event_manager, $location_id, $event_name, 2, $event_fee)";
 
 if($conn->query($sql) === TRUE) {
-	header("Location: ../frontend/dashboard.php");
+	$event_id = $conn->insert_id;
+}
+
+$sql = "INSERT INTO groups (event_id, name, details) VALUES ($event_id, $event_name, 'Main event group')";
+
+if($conn->query($sql) === TRUE) {
+	$group_id = $conn->insert_id;
+}
+
+$sql = "UPDATE events SET primary_event_group_id = $group_id WHERE event_id = $event_id";
+
+if ($conn->query($sql) === TRUE) {
+    header("Location: ../frontend/dashboard.php");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-
 
 $conn->close();
 ?>
