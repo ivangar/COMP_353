@@ -37,8 +37,7 @@ if(count($tags) == 1 && $tags[0] == " ")
 $tagCount = 0;
 ?>
 
-<html>
-<head>
+
 <script>
 	function removeTag(name)
 	{
@@ -48,9 +47,7 @@ $tagCount = 0;
 				tagString += tag.value +";";
 		});
 		
-		tagString = tagString.substring(0, tagString.length - 1);
-		
-		console.log(tagString);
+		tagString = tagString.substring(0, tagString.length - 1);		
 		window.location.replace("../backend/tag_add.php?tag="+tagString+"&<?php echo $params?>");
 
 	}
@@ -63,14 +60,11 @@ $tagCount = 0;
 		});
 		
 		tagString += document.querySelector("#new-tag").value;
-		console.log(tagString);
 		window.location.replace("../backend/tag_add.php?tag="+tagString+"&<?php echo $params?>");
 		
 	}
 	
 </script>
-</head>
-<body>
 <?php
 foreach($tags as $tag) {
 	echo "<button onclick='removeTag(this.name)' class='remove-tag-btn' name='".$tagCount++."' value='$tag'> $tag </button>";
@@ -80,5 +74,3 @@ foreach($tags as $tag) {
 
 <input type="text" id="new-tag"/><br>
 <button onclick='addTag()'>Add Tag</button>
-</body>
-</html>

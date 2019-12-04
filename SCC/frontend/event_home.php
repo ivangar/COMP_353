@@ -27,6 +27,7 @@ if(isset($_GET['create-group']) && $_GET['create-group'] == "true"){
 }
 include("post-content.php");
 include("display-post.php");
-
+include("poll.php");
+include("instant_messaging.php");
 unset($_SESSION['error']);
 ?>
