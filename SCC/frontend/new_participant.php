@@ -1,6 +1,7 @@
 <?php 
 session_start();
 $event_id = $_GET["event_id"];
+$group_id = $_GET["group_id"];
 $participant_data = array();
 require("navbar.php");
 ?>
@@ -40,13 +41,12 @@ require("navbar.php");
 
 <body>
 
-  <?php echo "<a class='right' href='event_details_page.php?event_id=".$event_id."'>Go Back</a>";
-        if(isset($_SESSION['participant_data']) && !empty($_SESSION['participant_data'])){
+  <?php if(isset($_SESSION['participant_data']) && !empty($_SESSION['participant_data'])){
           $participant_data = $_SESSION['participant_data'];
           unset($_SESSION['participant_data']);
         } 
   ?>
-  <h3>Add new participant to your event</h3>
+  <h3>Add a new participant to your event</h3>
 
   	<div class="container">
       <div style='padding: 30px 0;'>
@@ -97,6 +97,7 @@ require("navbar.php");
         </table>
       </fieldset>
 
+      <?php if(!empty($participant_data)){ ?>
      <div style='padding-top:30px;'>
             <table cellpadding='10' style='text-align: left;'>
               <tbody>
@@ -106,19 +107,21 @@ require("navbar.php");
               </tbody>
             </table>
       </div>
+      <?php }?>
 		</form>
 	</div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script type="text/javascript">
 	$(document).ready(function () {
+    var group_id = <?php echo "$group_id"; ?>;
     var event_id = <?php echo "$event_id"; ?>;
 
 		$( "#add_participant_form" ).submit(function( event ) {
         
         event.preventDefault();
 			  var user_id = <?php if(!empty($participant_data)) { $user_id = $participant_data['user_id']; echo "$user_id"; } else echo 0; ?>        
-        event_participant = { "action": "add_participant", "user_id": user_id, "event_id": event_id};
+        event_participant = { "action": "add_participant", "user_id": user_id, "group_id": group_id};
 
         $.ajax({
               url: "../backend/users/update_participant.php",
@@ -144,7 +147,7 @@ require("navbar.php");
         event.preventDefault();
         var search_user_id = $("#search_user_id").val();     
         
-        search_data = { "user_id": search_user_id, "event_id": event_id};
+        search_data = { "user_id": search_user_id, "group_id": group_id};
 
         $.ajax({
           url: "../backend/users/search_user.php",

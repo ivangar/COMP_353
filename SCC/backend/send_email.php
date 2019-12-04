@@ -11,8 +11,10 @@
 
     $sql = "Insert into emails(receiver_id, sender_id, title, body) Select "
             . "u.user_id, "
-            . $_SESSION["active_user"]["user_id"] . ", "
-            . $title . ", "
+            . $_SESSION["active_user"]["user_id"]
+            . ", "
+            . $title
+            . ", "
             . $body
             . " From users u Where u.email = "
             . $receiver;
@@ -24,7 +26,7 @@
         else {
             $_SESSION['errors'] .= " Error: Email error, did not send email.";
         }
-
+        echo $sql;
         echo "An error occurred: email did not send";
     }
     else {

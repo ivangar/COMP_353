@@ -4,10 +4,11 @@
 	//Get all the data from DB for a specific participant
 	$participant_data = array();
 	$participant_data_ids = array();
-	$sql = "SELECT first_name, last_name, middle_name, address, date_of_birth, email, organization, e.participant_status_id 
+
+	$sql = "SELECT first_name, last_name, middle_name, address, date_of_birth, email, organization, g.participant_status_id 
 			FROM users u
-			JOIN event_participants e ON e.user_id = u.user_id
-			WHERE e.event_id = $event_id AND u.user_id = $user_id";
+			JOIN group_members g ON g.user_id = u.user_id
+			WHERE g.group_id = $group_id AND u.user_id = $user_id";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {

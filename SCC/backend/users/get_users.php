@@ -35,19 +35,20 @@
 	}
 
 	//If this file is called to view all participants related to an event then get all users linked to the event
-	if(isset($event_id) && $event_id){
+	if(isset($group_id) && $group_id){
 		$sql = "SELECT u.*, p.status FROM users u
-				JOIN event_participants e ON e.user_id = u.user_id
-				JOIN participant_status p ON p.participant_status_id = e.participant_status_id
-				WHERE e.event_id = $event_id";
+				JOIN group_members g ON g.user_id = u.user_id
+				JOIN participant_status p ON p.participant_status_id = g.participant_status_id
+				WHERE g.group_id = $group_id";
 
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
 				$user_name = $row["first_name"] . " " . $row["last_name"];
-				$edit_participant_url = "<a href='edit_participant.php?user_id=" . $row["user_id"] . "&event_id=" . $event_id . "&event_name=".$event_name."'>edit</a>";
-				$participant_info = array($user_name,$row["address"],$row["date_of_birth"],$row["email"],$row["organization"],$row["status"],$edit_participant_url);
+				$edit_participant_url = "<a href='edit_participant.php?user_id=" . $row["user_id"] . "&group_id=" . $group_id . "&group_name=".$group_name."'>edit</a>";
+				$participant_info = ($group_manager) ? array($user_name,$row["address"],$row["date_of_birth"],$row["email"],$row["organization"],$row["status"],$edit_participant_url) :
+									array($user_name,$row["address"],$row["date_of_birth"],$row["email"],$row["organization"],$row["status"]);
 		    	array_push($participants,$participant_info);
 		    	$participant_info = array();
 			}

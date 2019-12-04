@@ -10,6 +10,7 @@ session_start();
 $user_id = $_SESSION['active_user']['user_id'];
 $user_name = $_SESSION['active_user']['first_name'];
 $event_id = (isset($_GET["event_id"]) && !empty($_GET["event_id"])) ? $_GET["event_id"] : 0;
+$group_id = 0;
 $event_info = array();  //array holding main details
 $event_location = array();  //array holding location details
 $event_payment = array();  //array holding payment details
@@ -42,7 +43,8 @@ if($event_id){
         $event_location_id = $row["location_id"];
         $event_payment_id = $row["event_payment_id"];
         $event_resource_id = $row["resource_id"];
-
+        $group_id = $row["primary_event_group_id"];
+        
         $event_type_sql = "SELECT type, recurrent FROM event_types WHERE event_type_id = $event_type_id";
         $event_type_result = $conn->query($event_type_sql);
         

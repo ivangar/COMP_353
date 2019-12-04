@@ -7,7 +7,7 @@
 			//Setting up post params
 
 			$data = $_POST;
-			$event_id = $data['event_id'];
+			$group_id = $data['group_id'];
 			$user_id = $data['user_id'];
 			$first_name = $data['first_name'];
 			$last_name = $data['last_name'];
@@ -41,9 +41,9 @@
 			}
 
 			//Update event_participants table
-			$sql = "UPDATE event_participants 
+			$sql = "UPDATE group_members 
 			      SET participant_status_id = $status
-			      WHERE event_id = $event_id AND user_id = $user_id";
+			      WHERE group_id = $group_id AND user_id = $user_id";
 
 			if ($conn->query($sql) === TRUE) {
 			    $updated_tables++;
@@ -60,11 +60,11 @@
 			//Setting up post params
 			
 			$data = $_POST;
-			$event_id = $data['event_id'];
+			$group_id = $data['group_id'];
 			$user_id = $data['user_id'];
 
 			//user might already exist in DB but not linked yet, so just link the user with the event
-			$insert_event_participants = "INSERT INTO event_participants (event_id, user_id, participant_status_id) VALUES ($event_id, $user_id, 1)";
+			$insert_event_participants = "INSERT INTO group_members (user_id, group_id, participant_status_id) VALUES ($user_id, $group_id, 1)";
 			if ($conn->query($insert_event_participants) != TRUE) {
 				echo "error " . $conn->error;
 			}

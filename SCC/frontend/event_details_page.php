@@ -49,13 +49,14 @@ require("navbar.php");?>
 	  	<form action="../backend/events/update_event.php" method="post" name="update_event_form" id="update_event_form" accept-charset="utf-8">
         
 	  			<?php 
+           $disabled = (!$event_manager) ? "disabled='disabled'" : "";
 	  			 echo "<input type='hidden' name='event_id' value='$event_id'>
                  <input type='hidden' name='location_id' value='$event_location_id'>
                  <input type='hidden' name='payment_id' value='$event_payment_id'>
                  <input type='hidden' name='resource_id' value='$event_resource_id'>";
 
 	  			 if(!empty($event_info) && sizeof($event_info) != 0) {
-            echo "<fieldset><legend>Main details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<fieldset $disabled><legend>Main details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
 	  				foreach($event_info as $label => $value) { 
 	  							$column_name = $event_info_ids[$label];
                   $input_type = "text";
@@ -98,7 +99,7 @@ require("navbar.php");?>
 	  			}
 
           if(!empty($event_location) && sizeof($event_location) != 0) {
-            echo "<div style='padding-top:30px;'><fieldset><legend>Location details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<div style='padding-top:30px;'><fieldset $disabled><legend>Location details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
             foreach($event_location as $label => $value) { 
                   $column_name = $event_location_ids[$label];
                   echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
@@ -107,7 +108,7 @@ require("navbar.php");?>
           }
 
           if(!empty($event_payment) && sizeof($event_payment) != 0) {
-            echo "<div style='padding-top:30px;'><fieldset><legend>Payment details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<div style='padding-top:30px;'><fieldset $disabled><legend>Payment details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
             foreach($event_payment as $label => $value) { 
                   $column_name = $event_payment_ids[$label];
                   echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
@@ -116,7 +117,7 @@ require("navbar.php");?>
           }
 
           if(!empty($event_resources) && sizeof($event_resources) != 0) {
-            echo "<div style='padding-top:30px;'><fieldset><legend>Resources</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<div style='padding-top:30px;'><fieldset $disabled><legend>Resources</legend><table cellpadding='10' style='text-align: left;'><tbody>";
             foreach($event_resources as $label => $value) { 
                   $column_name = $event_resources_ids[$label];
                   echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
@@ -134,6 +135,18 @@ require("navbar.php");?>
                       <td><button id='view_participants'>View participants</button></td>
                       <td><button id='new_participant'>Add new participant</button></td>
                       <td><button id='event_report'>View Event Report</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>";
+          }
+
+          if(!$event_manager){
+            echo "<div style='padding-top:30px;'>
+                  <table cellpadding='10' style='text-align: left;'>
+                    <tbody>
+                      <tr>
+                      <td><button id='view_participants'>View participants</button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -157,7 +170,9 @@ require("navbar.php");?>
     if(users_imported) alert("users have been imported successfully");
     if (errors !== "") alert(errors);
 
-    var event_id = <?php echo "$event_id"; ?>;
+    var event_id = <?php echo $event_id; ?>;
+    var group_id = <?php echo $group_id; ?>;
+    var group_manager = <?php echo $event_manager; ?>;
 
 		$( "#update_event_form" ).submit(function( event ) {
 			  event_data = $("#update_event_form").serializeArray();
@@ -188,12 +203,12 @@ require("navbar.php");?>
     $("#view_participants").click(function (event) {
         event.preventDefault();
         var event_name = $('#update_event_form').find('input[name="event_name"]').val();
-        window.location.href = "view_participants.php?event_id="+event_id+"&event_name="+event_name;
+        window.location.href = "view_participants.php?group_id="+group_id+"&group_manager="+group_manager+"&group_name="+event_name;
     });
 
     $("#new_participant").click(function (event) {
         event.preventDefault();
-        window.location.href = "new_participant.php?event_id="+event_id;
+        window.location.href = "new_participant.php?event_id="+event_id+"&group_id="+group_id;
     });
 	
 	$("#event_report").click(function (event) {

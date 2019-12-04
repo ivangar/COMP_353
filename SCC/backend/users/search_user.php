@@ -3,7 +3,7 @@
 	require("../connection.php");
 
 	$user_id = $_POST["user_id"];
-	$event_id = $_POST["event_id"];
+	$group_id = $_POST["group_id"];
 
 	//first check that this user actually exists in the DB
 	$search_user_sql = "SELECT * FROM users WHERE user_id = $user_id";
@@ -12,7 +12,7 @@
 	if ($search_result->num_rows > 0) {
 		
 		//Next check that this user is already a participant in the event
-		$search_participant_sql = "SELECT * FROM event_participants WHERE event_id = $event_id AND user_id = $user_id";
+		$search_participant_sql = "SELECT * FROM group_members WHERE group_id = $group_id AND user_id = $user_id";
 		$result = $conn->query($search_participant_sql);
 
 		if ($result->num_rows > 0) {
