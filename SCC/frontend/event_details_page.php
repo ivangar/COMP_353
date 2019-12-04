@@ -133,6 +133,7 @@ require("navbar.php");?>
                       <td><button id='import_users' >Import users</button></td>
                       <td><button id='view_participants'>View participants</button></td>
                       <td><button id='new_participant'>Add new participant</button></td>
+                      <td><button id='event_report'>View Event Report</button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -193,6 +194,11 @@ require("navbar.php");?>
     $("#new_participant").click(function (event) {
         event.preventDefault();
         window.location.href = "new_participant.php?event_id="+event_id;
+    });
+	
+	$("#event_report").click(function (event) {
+        event.preventDefault();
+        window.location.href = "event_report.php?event_id="+event_id;
     });
       
 	});//end document.ready
