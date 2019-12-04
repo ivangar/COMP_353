@@ -27,8 +27,21 @@
                 {
                     $email = $emails->fetch_assoc();
 
+                    include ("../backend/connection.php");
+                    $sender_sql = "Select * From users u Where u.user_id = "
+                        . $email["sender_id"];
+
+                    $result = $conn->query($sender_sql);
+                    if ($result->num_rows == 0) {
+                        $sender = "Anonymous";
+                    } else {
+                        $sender = $result->fetch_assoc();
+                    }
+
+                    $conn->close();
+
                     echo "<tr><td>";
-                    echo $email["sender"];
+                    echo $sender["first_name"] . " " . $sender["last_name"];
                     echo "</td>";
 
                     echo "<td>";
@@ -40,7 +53,7 @@
                     echo "</td>";
 
                     echo '<td><input type="button" onclick=\'alertFunction(';
-                    echo "\"".$email["sender"];
+                    echo "\"".$sender["first_name"] . " " . $sender["last_name"];
                     echo "\",\"";
                     echo $email["title"];
                     echo "\",\"";
