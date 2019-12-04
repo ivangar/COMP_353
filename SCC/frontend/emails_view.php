@@ -1,3 +1,9 @@
+<?php
+    include("navbar.php");
+    include ("../backend/emails.php");
+?>
+
+
 <html>
 <head>
 </head>
@@ -9,8 +15,6 @@
             }
         </script>
         <?php
-            include("navbar.php");
-            include ("../backend/emails.php");
             $emails = getEmails();
 
             echo

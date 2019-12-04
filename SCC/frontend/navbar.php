@@ -31,6 +31,9 @@ if(isset($userid)){
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account.php">My Account</a>
+                    </li>
                     <li class="nav-item"><?php
                         if(isset($roleId) && $roleId == 0) {
                             echo '<a class="nav-link" href="admin_create-event.php">Create Event</a>';

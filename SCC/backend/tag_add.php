@@ -1,6 +1,3 @@
-UPDATE `groups` SET `meta_data` = 'basketball;20-30;food' WHERE `groups`.`group_id` = 5;
-
-
 <?php
 if(!isset($_GET["type"]) || !isset($_GET["tag"]))
 	exit();
@@ -29,7 +26,17 @@ else if ($type == "user")
 }
 $conn->query($sql);
 
-header("Location: ../frontend/tags.php?".$params);
-
+//header("Location: ../frontend/tags.php?".$params);
+echo "
+<html>
+	<head>
+		<script>
+			window.onload = goBack;
+			function goBack() {
+				window.location.replace('../frontend/tags.php?$params'); 
+			}
+		</script>
+	</head>
+<html>";
 
 ?>
