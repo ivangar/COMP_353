@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2019 at 07:20 PM
+-- Generation Time: Dec 04, 2019 at 09:18 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `emails` (
   `email_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
-  `sender_id` int(11) NOT NULL,
+  `sender_email` varchar(120) NOT NULL,
   `title` tinytext NOT NULL,
   `body` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -41,13 +41,13 @@ CREATE TABLE `emails` (
 -- Dumping data for table `emails`
 --
 
-INSERT INTO `emails` (`email_id`, `receiver_id`, `sender_id`, `title`, `body`, `date`) VALUES
-(1, 781264, 1043082, 'Title', 'Body of the email', '2019-12-01 18:14:47'),
-(2, 781264, 1043082, 'A beautiful day', 'The biggest email in the db by a long shot hahahahahha, long email sir', '2019-12-01 18:15:50'),
-(3, 781264, 1043082, 'Major Tom', 'Please dont crash', '2019-12-01 18:16:39'),
-(4, 1043082, 781264, 'Hello', 'Can we go to the zoo?', '2019-12-01 18:17:42'),
-(5, 1043082, 781264, 'Pew', 'Pew Pew you dead', '2019-12-01 18:18:04'),
-(6, 1043082, 781264, 'You', 'Iz a mad lad', '2019-12-01 18:18:30');
+INSERT INTO `emails` (`email_id`, `receiver_id`, `sender_email`, `title`, `body`, `date`) VALUES
+(1, 781264, 'bemail@ca.ca', 'Title', 'Body of the email', '2019-12-01 18:14:47'),
+(2, 781264, 'bemail@ca.ca', 'A beautiful day', 'The biggest email in the db by a long shot hahahahahha, long email sir', '2019-12-01 18:15:50'),
+(3, 781264, 'bemail@ca.ca', 'Major Tom', 'Please dont crash', '2019-12-01 18:16:39'),
+(4, 1043082, 'aemail@ca.ca', 'Hello', 'Can we go to the zoo?', '2019-12-01 18:17:42'),
+(5, 1043082, 'aemail@ca.ca', 'Pew', 'Pew Pew you dead', '2019-12-01 18:18:04'),
+(6, 1043082, 'aemail@ca.ca', 'You', 'Iz a mad lad', '2019-12-01 18:18:30');
 
 --
 -- Indexes for dumped tables
@@ -57,8 +57,18 @@ INSERT INTO `emails` (`email_id`, `receiver_id`, `sender_id`, `title`, `body`, `
 -- Indexes for table `emails`
 --
 ALTER TABLE `emails`
-  ADD KEY `receiver_id` (`receiver_id`),
-  ADD KEY `sender_id` (`sender_id`);
+  ADD PRIMARY KEY (`email_id`),
+  ADD KEY `receiver_id` (`receiver_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -68,8 +78,7 @@ ALTER TABLE `emails`
 -- Constraints for table `emails`
 --
 ALTER TABLE `emails`
-  ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `emails_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
