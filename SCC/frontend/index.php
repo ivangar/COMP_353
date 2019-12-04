@@ -13,7 +13,7 @@ else
 	echo
 	"
 	<table width='600'>
-	<form action='../backend/authorize.php' method='post' enctype='multipart/form-data'>
+	<form action='../backend/authenticate.php' method='post' enctype='multipart/form-data'>
 	<tr>
 	<td width='20%'>Login</td>
 	</tr>
