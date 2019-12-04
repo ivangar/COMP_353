@@ -33,7 +33,7 @@
 	    		<option value="1">Comment</option>
 	    		<option value="2">Add</option>
 	    	</select>
-    		<input type="hidden" name="event_id" value=<?php echo $_GET['event_id']?>>
+    		<input type="hidden" name="event_id" value=<?php if(isset($_GET['event_id'])) echo $_GET['event_id']?>>
     		<input type="hidden" name="group_id" value=<?php if(isset($_GET['group_id']))echo $_GET['group_id']?>>
     	</div>
     	<input type="submit" value="Upload Image" name="submit">
