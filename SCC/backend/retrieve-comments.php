@@ -15,7 +15,7 @@ if(!isset($userid)){
     $_SESSION['error'] = "Error - No user logged in";
 }
 
-$sqlComment = "SELECT `comments`.`comment_date`, `comments`.`comment`, `users`.`first_name`, `users`.`middle_name`, `users`.`last_name`\n"
+$sqlComment = "SELECT * \n"
 
     . "FROM `comments`\n"
 
@@ -23,9 +23,11 @@ $sqlComment = "SELECT `comments`.`comment_date`, `comments`.`comment`, `users`.`
 
     . "ON `comments`.`post_id` = `posts`.`post_id`\n"
 
-    . "INNER  JOIN `users`\n"
+    . "INNER JOIN `users`\n"
 
-    . "ON `comments`.`user_id`  = `users`.`user_id`";
+    . "ON `comments`.`user_id` = `users`.`user_id`\n"
+
+    . "WHERE `posts`.`post_id` = $postId";
 
 $resultComment = $conn->query($sqlComment);
 if (!$resultComment) {
@@ -33,7 +35,7 @@ if (!$resultComment) {
 }
 if($resultComment -> num_rows > 0){
 	while ($rowComment = $resultComment-> fetch_assoc()) {
-		echo "<div><div>". $rowComment['comment'] . $rowComment['comment_date'] . "</div>" . "<div>by " . $rowComment['first_name'] . $rowComment['middle_name'] . $rowComment['last_name'] . "</div></div>";
+		echo "<div class='comment'><div><div>". $rowComment['comment'] . "</div><div>" . $rowComment['comment_date'] . "</div></div>" . "<div>by " . $rowComment['first_name'] . $rowComment['middle_name'] . $rowComment['last_name'] . "</div></div>";
 	}
 }
 
