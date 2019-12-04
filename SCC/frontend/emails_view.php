@@ -6,6 +6,7 @@
             }
         </script>
         <?php
+            include("navbar.php");
             include ("../backend/emails.php");
             $emails = getEmails();
 
@@ -28,8 +29,8 @@
                     $email = $emails->fetch_assoc();
 
                     echo "<tr><td>";
-                    echo "</td>";
                     echo $email["sender_email"];
+                    echo "</td>";
 
                     echo "<td>";
                     echo $email["title"];
