@@ -32,7 +32,7 @@ if ($result && $result->num_rows > 0) {
 
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        $event_details_url = "<a href='form_event_controller.php?event_id=" . $row["event_id"] . "'>Set Charges</a>";
+        $event_details_url = "<a href='form_event_controller.php?event_id=" . $row["event_id"] . "'>Set Resources</a>";
         $event_name = "<a href='event_home.php?event_id=" . $row["event_id"] . "&group_id=" . $row["primary_event_group_id"] . "'>" . $row['event_name'] . "</a>";
         $event_info = array($row["event_id"], $event_name, $row["start_date"], $row["end_date"], $event_details_url);
         array_push($event_rows, $event_info);

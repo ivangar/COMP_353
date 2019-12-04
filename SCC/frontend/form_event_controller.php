@@ -40,25 +40,25 @@ require "../backend/events/event_details.php";?>
   <a href='../backend/logout.php' class='right'>Logout</a>
   <h2 >Set reources</h2>
 
-  <?php if (!empty($event_id) && $event_id) {?>3
+  <?php if (!empty($event_id) && $event_id) {?>
   	<div class="container">
 
 	  	<form action="../backend/events/update_event.php" method="post" name="finalize_event_form" id="finalize_event_form" accept-charset="utf-8">
 
-            <?php   
-                echo "<input type='hidden' name='event_id' value='$event_id'>
+            <?php
+echo "<input type='hidden' name='event_id' value='$event_id'>
                                     <input type='hidden' name='location_id' value='$event_location_id'>
                                     <input type='hidden' name='payment_id' value='$event_payment_id'>
                                     <input type='hidden' name='resource_id' value='$event_resource_id'>";
 
-                echo "<div style='padding-top:30px;'><fieldset><legend>Resources</legend><table cellpadding='10' style='text-align: left;'><tbody>";
-                foreach ($event_resources as $label => $value) {
-                    $column_name = $event_resources_ids[$label];
-                    echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>";
-                }
-                echo "</tbody></table></fieldset>";
+    echo "<div style='padding-top:30px;'><fieldset><legend>Resources</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+    foreach ($event_resources as $label => $value) {
+        $column_name = $event_resources_ids[$label];
+        echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>";
+    }
+    echo "</tbody></table></fieldset>";
 
-                echo "<div style='padding-top:30px;'>
+    echo "<div style='padding-top:30px;'>
                     <table cellpadding='10' style='text-align: left;'>
                         <tbody>
                         <tr>

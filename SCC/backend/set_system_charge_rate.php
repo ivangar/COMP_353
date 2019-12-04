@@ -1,26 +1,24 @@
 <?php
 include "connection.php";
 
-if(!isset($_SESSION)) { session_start(); }
-
+if (!isset($_SESSION)) {session_start();}
 
 $charge_rate = $_POST['charge_rate'];
 
 // TODO: check if is controller
 
-$sql = "SELECT * from system_charge_rate where system_charge_rate_id=1)";
+$sql = "SELECT * FROM system_charge_rate WHERE system_charge_rate_id = 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    $sql = "UPDATE system_charge_rate set charge_rate = $charge_rate where id = 1";
-}
-else{
+    $sql = "UPDATE system_charge_rate set charge_rate = $charge_rate where system_charge_rate_id = 1";
+} else {
     $sql = "INSERT INTO system_charge_rate(charge_rate) VALUES($charge_rate)";
 }
 
 if ($conn->query($sql) != true) {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    header("Location: ../frontend/event_controller_page.php?charge_rate_update=fail");
 } else {
-    echo "success";
+    header("Location: ../frontend/event_controller_page.php?charge_rate_update=success");
 }
 $conn->close();
