@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+if (!isset($_SESSION)) {session_start();}
+
 $user_id = $_SESSION['active_user']['user_id'];
 $group_id = $_GET["group_id"];
 
