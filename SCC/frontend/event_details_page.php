@@ -38,9 +38,6 @@ require("navbar.php");?>
 
 <body>
 
-  <?php $go_back_url = ($event_manager) ? "<a href='event_manager_page.php'>Go Back</a>" : "<a href='dashboard.php'>Go Back</a>";
-        echo $go_back_url; ?>
-  <a href='../backend/logout.php' class='right'>Logout</a>
   <h3 >Event Details</h3>
 
   <?php if(!empty($event_id) && $event_id) { ?>
