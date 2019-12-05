@@ -156,7 +156,7 @@ require("../backend/events/event_details.php");?>
             .done(function( data ) {
              	if(data === "updated") {
              		alert("The event has been finalized");
-             		window.location.href='event_manager_page.php';
+             		window.location.href='dashboard.php';
              	}
                 else alert(data);
             })
