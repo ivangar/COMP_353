@@ -25,11 +25,11 @@ if ($result && $result->num_rows > 0) {
         $event_info = array();
     }
 }
-
 if (!empty($group_rows) && sizeof($group_rows) != 0) {
     echo "
 	<div class='container pt-5'>
 		<a class='btn btn-primary mt-3 mb-3' href='../frontend/view_group_details.php?event_id=$event_id&group_id=$group_id'>Current Group Details</a>
+		<form method='POST' action='../backend/leave-group.php'><input type='hidden' name='event_id' value=$event_id></input><input type='hidden' name='group_id' value=$group_id></input><button class='btn btn-primary mt-3 mb-3' type='submit'>Leave Group</button></form>
 		<div class='card'>
 			<div class='card-header'>
 				<p>Groups List</p>
@@ -39,6 +39,5 @@ if (!empty($group_rows) && sizeof($group_rows) != 0) {
     foreach ($group_rows as $group) {
         echo "<li class='list-group-item'>$group</li>";
     }
-
     echo "</ul></div></div>";
 }
