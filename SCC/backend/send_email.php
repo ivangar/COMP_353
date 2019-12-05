@@ -12,11 +12,11 @@
     $sql = "Insert into emails(receiver_id, sender_email, title, body) Select "
             . "u.user_id, "
             . $_SESSION["active_user"]["email"]
-            . ", "
-            . $title
-            . ", "
-            . $body
-            . " From users u Where u.email = "
+            . ", '"
+            . $conn->real_escape_string($title)
+            . "', '"
+            . $conn->real_escape_string($body)
+            . "' From users u Where u.email = "
             . $receiver;
 
     if ($conn->query($sql) != TRUE) {

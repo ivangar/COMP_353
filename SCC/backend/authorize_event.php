@@ -15,15 +15,20 @@ else {
 	exit();
 }
 
-$sql = "SELECT count(*) as 'permission' FROM events, user_roles WHERE user_roles.user_id = $user_id OR event_manager_id = $user_id AND event_id = $event_id";
+$sql = "SELECT count(*) as 'permission' FROM events WHERE event_manager_id = $user_id AND event_id = $event_id";
 $permission = $conn->query($sql)->fetch_assoc()['permission'];
+
+if($permission == 0) {
+	$sql = "SELECT count(*) as 'permission' FROM user_roles WHERE user_roles.user_id = $user_id";
+	$permission = $conn->query($sql)->fetch_assoc()['permission'];
+}
+
 
 if($permission == 0) {
 	if(!isset($silent_auth))
 		header("Location: ../frontend/dashboard.php");
-	else
-		$is_event_manager = true;
-
 }
+else
+	$is_event_manager = $event_id;
 
 ?>

@@ -54,12 +54,16 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             for ($x = 0; $x < $participants->num_rows; $x++) {
                 $participant = $participants->fetch_assoc();
 
-                $send_email = "INSERT INTO emails(receiver_id, sender_id, title, body) VALUES ("
+                $send_email = "INSERT INTO emails(receiver_id, sender_email, title, body) VALUES ("
                     . $participant["user_id"]
-                    .",". $_SESSION['active_user']['user_id']
-                    . ", \"Event post\", \"A post has been made into your event "
+                    . ","
+                    . $_SESSION['active_user']['email']
+                    . ", '"
+                    . $conn->real_escape_string("Event post")
+                    . "', '"
+                    . $conn->real_escape_string("A post has been made into your event ")
                     . $event_id
-                    . "\")";
+                    . "')";
 
                 if ($conn->query($send_email) != TRUE) {
                     $_SESSION['errors'] .= " Error: emails could not be send after post was uploaded";
@@ -86,12 +90,15 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             for ($x = 0; $x < $participants->num_rows; $x++) {
                 $participant = $participants->fetch_assoc();
 
-                $send_email = "INSERT INTO emails(receiver_id, sender_id, title, body) VALUES ("
+                $send_email = "INSERT INTO emails(receiver_id, sender_email, title, body) VALUES ("
                     . $participant["user_id"]
-                    .",". $_SESSION['active_user']['user_id']
-                    . ", \"Event post\", \"A post has been made into your event "
+                    . ",". $_SESSION['active_user']['email']
+                    . ", '"
+                    . $conn->real_escape_string("Event post")
+                    . "', '"
+                    . $conn->real_escape_string("A post has been made into your event ")
                     . $event_id
-                    . "\")";
+                    . "')";
 
                 if ($conn->query($send_email) != TRUE) {
                     $_SESSION['errors'] .= " Error: emails could not be send after post was uploaded";
