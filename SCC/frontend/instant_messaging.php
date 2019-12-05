@@ -16,8 +16,8 @@ http://comp_353.test/SCC/frontend/instant_messaging.php?group_id=1
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     </head>
 
-    <body class="pt-5">
-        <div class="container border border-primary p-0 rounded-top">
+    <body>
+        <div class="container border border-primary p-0 rounded-top mb-5">
             <header class="page-header bg-primary p-4 text-white">
                 <div class="container-fluid ">
                     <h2>Chat Box</h2>

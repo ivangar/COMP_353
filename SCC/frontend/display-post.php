@@ -1,36 +1,16 @@
-<?php
-include("../backend/retrieve-posts.php");
-?>
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<style type="text/css">
-		.post {
-			width: 600px;
-			margin: auto;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin-bottom: 40px;
-			border: 1px solid gray;
-		}
-		.post_data-container {
-			display: flex;
-			justify-content: space-between;
-			width: 100%;
-		}
-		.comment {
-			width: 100%;
-			margin-top: 10px;
-		}
-		.comment > div {
-			display: flex;
-			justify-content: space-between;
-		}
-	</style>
-</head>
-<body>
 
+<body>
+	<div class="container border border-primary p-0 rounded-top mb-5 ">
+		<header class="page-header bg-primary p-4 text-white">
+			<div class="container-fluid ">
+				<h2>Wall</h2>
+			</div>
+		</header>
+		<div class="container-fluid pl-4 pr-0">
+			<?php include "../backend/retrieve-posts.php";?>
+		</div>
+	</div>
 </body>
 </html>
