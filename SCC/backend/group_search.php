@@ -14,7 +14,7 @@ if(isset($_GET["search"])) {
 }
 else
 	$search_query = "";
-$sql = "select group_id,name from groups WHERE event_id = $event_id AND NOT group_id = $event_primary_group_id AND `meta_data` LIKE '%$search_query%'";
+$sql = "SELECT `group_id`,`name` FROM `groups` WHERE `event_id` = $event_id AND NOT `group_id` = $event_primary_group_id AND `meta_data` LIKE '%$search_query%'";
 $event_groups = $conn->query($sql);
 
 echo "Number of groups ". $event_groups->num_rows . "<br>";

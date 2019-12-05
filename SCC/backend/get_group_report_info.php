@@ -22,12 +22,12 @@ $sql = "SELECT first_name , middle_name, last_name FROM `users` JOIN group_membe
 $group_members = $conn->query($sql);
 
 
-$sql = "SELECT posts.user_id,posts.upload_date FROM groups JOIN posts on groups.group_id = posts.group_id WHERE posts.group_id = $group_id ORDER BY posts.upload_date LIMIT 1";
+$sql = "SELECT `posts`.`user_id`,`posts`.`upload_date` FROM `groups` JOIN `posts` on `groups`.`group_id` = `posts`.`group_id` WHERE `posts`.`group_id` = $group_id ORDER BY `posts`.`upload_date` LIMIT 1";
 $result = $conn->query($sql);
 
 $first_post_date = $result->fetch_assoc()["upload_date"];
 
-$sql = "SELECT posts.user_id,posts.upload_date FROM groups JOIN posts on groups.group_id = posts.group_id WHERE posts.group_id = $group_id ORDER BY posts.upload_date DESC LIMIT 1";
+$sql = "SELECT `posts`.`user_id`,`posts`.`upload_date` FROM `groups` JOIN `posts` on `groups`.`group_id` = `posts`.`group_id` WHERE `posts`.`group_id` = $group_id ORDER BY `posts`.`upload_date` DESC LIMIT 1";
 $result = $conn->query($sql);
 $latest_post_date = $result->fetch_assoc()["upload_date"];
 
