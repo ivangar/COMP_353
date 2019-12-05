@@ -58,6 +58,7 @@ require("navbar.php");?>
 									  </div>";
 			?>
 			</form>
+			<iframe  frameBorder="0" src="tags.php?type=group&group=<?php echo $group_id?>">
 		</div>
   <?php }?>
 </div>
@@ -106,7 +107,7 @@ require("navbar.php");?>
 		
 	});//end document.ready
   </script>
-	<iframe src="tags.php?type=group&group=<?php echo $group_id?>">
+
 </body>
 
 </html>
