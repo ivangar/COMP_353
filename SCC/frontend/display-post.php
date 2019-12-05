@@ -8,7 +8,7 @@
 				<h2>Wall</h2>
 			</div>
 		</header>
-		<div class="container-fluid pl-4 pr-4">
+		<div class="container-fluid pl-4 pr-4 bg-light">
 			<?php include "../backend/retrieve-posts.php";?>
 		</div>
 	</div>
