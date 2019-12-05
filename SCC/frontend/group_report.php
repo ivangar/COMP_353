@@ -1,11 +1,6 @@
 <?php
 require("../backend/get_group_report_info.php");
 
-//echo "Number of members :". $group_members->num_rows . "<br>";
-/*
-while($row = $group_members->fetch_assoc()) {
-	echo $row["first_name"] . " " . $row["middle_name"] . " " . $row["last_name"] . "<br>";
-}*/
 
 
 echo "First Post posted on : ". $first_post_date . "<br>";
