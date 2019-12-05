@@ -79,11 +79,15 @@ if(isset($_POST["submit"]))
 						}
             
 					  // Send email to added user
-					  $send_email = "INSERT INTO emails(receiver_id, sender_id, title, body) VALUES ("
-						  . $userID.",". $_SESSION['active_user']['user_id']
-						  . ", \"Event invitation\", \"You have been invited to event "
+					  $send_email = "INSERT INTO emails(receiver_id, sender_email, title, body) VALUES ("
+						  . $userID.",". $_SESSION['active_user']['email']
+						  . ", '"
+                          . $conn->real_escape_string("Event invitation")
+                          ."', '"
+                          . $conn->real_escape_string("You have been invited to event ")
 						  . $event_id
-						  ." and have been added to this event, if you wish to leave the event, go to events page and select leave event.\")";
+						  . $conn->real_escape_string(" and have been added to this event, if you wish to leave the event, go to events page and select leave event.")
+						  . "')";
 
 					  if ($conn->query($send_email) != TRUE) {
 						  $_SESSION['errors'] .= " Error: emails could not be send after importing user from csv";
