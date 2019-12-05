@@ -17,57 +17,42 @@ include "../backend/get_system_charge_rate.php";?>
   <!-- Place favicon.ico in the root directory -->
 
   <meta name="theme-color" content="#fafafa">
-  <style type="text/css">
-    .right {
-      position: absolute;
-      right: 0px;
-      padding: 10px;
-    }
-  </style>
 </head>
 
 <body>
-  <h3>Welcome <?php echo $user_name; ?>!</h3>
+    <div class="container pt-5">
+      <h3>Welcome <?php echo $user_name; ?>!</h3>
 
-  <?php if (!empty($event_rows) && sizeof($event_rows) != 0) {?>
-   <p> You're the controller:</p>
+      <?php if (!empty($event_rows) && sizeof($event_rows) != 0) {?>
 
-
-   <div class="container">
-
-
-   <form action="../backend/set_system_charge_rate.php" method="post" name="set_system_charge_rate_form" id="set_system_charge_rate_form" enctype="multipart/form-data">
-        <label>System Charge Rate</label>
-        <input type="text" name="charge_rate" title="charge_rate" <?php if (!empty($charge_rate)) {echo "value='" . $charge_rate . "'";}?> >
-        <button id='update_event' type='submit'>Set System Charge Rate</button>
-	</form>
-</div>
-
-
-
-
-	<table cellpadding="10" style="text-align: left;">
-		<caption>Events</caption>
-	    <thead>
-		    <tr>
-		      <th>Event Id</th>
-		      <th>Event Name</th>
-		      <th>Start Date</th>
-		      <th>End Date</th>
-		      <th>Status</th>
-		      <th></th>
-		    </tr>
-		</thead>
-	  	<tbody>
-	  		<?php foreach ($event_rows as $row) {
+        <form action="../backend/set_system_charge_rate.php" method="post" name="set_system_charge_rate_form" id="set_system_charge_rate_form" enctype="multipart/form-data" class="form-inline pt-4 pb-4">
+          <div class="form-group mb-2">
+            <label class="pr-3">System Charge Rate</label>
+            <input type="text" class="form-control mr-3" name="charge_rate" title="charge_rate" <?php if (!empty($charge_rate)) {echo "value='" . $charge_rate . "'";}?> >
+            <button id='update_event' type='submit' class="btn btn-primary">Set System Charge Rate</button>
+          </div>
+        </form>
+        <table class="table"  cellpadding="10" style="text-align: left;">
+          <thead>
+            <tr>
+              <th scope="col">Event Id</th>
+              <th scope="col">Event Name</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Set Resources</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($event_rows as $row) {
     echo "<tr>";
     foreach ($row as $event_attr) {echo "<td>$event_attr</td>";}
     echo "</tr>";
 }?>
-		</tbody>
-	</table>
-  <?php }?>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        </tbody>
+      </table>
+      <?php }?>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </body>
 
 </html>
