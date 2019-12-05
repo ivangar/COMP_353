@@ -3,8 +3,6 @@
         session_start();
     }
     include ("connection.php");
-    include ("../frontend/emails_view.php");
-
     $receiver = $_POST["email_receiver"];
     $title = "'" . $_POST["email_title"] . "'";
     $body = "'" . $_POST["email_body"] . "'";
@@ -28,6 +26,7 @@
     }
     else {
         echo "Email sent to : " . $receiver;
+        header("Location: ../frontend/emails_view.php");
     }
 
     $conn->close();
