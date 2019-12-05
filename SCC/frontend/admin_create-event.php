@@ -16,28 +16,37 @@
 		a{
 			margin-right:20px;
 		}
+		.admin-view{
+			width: fit-content;
+			margin: auto;
+			margin-top: 40px;
+		}
   </style>
 </head>
 
 <body>	
-	<h1>Admin View</h1>
-	<form action="../backend/eventMaker.php" method="POST">
-		<p>Enter event name</p>
-		<input type="text" name="event_name">
-		<?php if(!empty($users) && sizeof($users) != 0) { echo "<p>Select an event manager</p>$select_list";}
-		      else echo "<p>Write the user id of the event manager</p><input type='text' name='user_id' required>";
-		?>
-		<p>Select event type</p>
-		<select name="event_type">
-			<option value="non-profit_recurrent">non-profit recurrent</option>
-			<option value="non-profit">non-profit non-recurrent</option>
-			<option value="private_recurrent">private recurrent</option>
-			<option value="private">private non-recurrent</option>
-		</select>
-		<p>Enter user fee</p>
-		<input type="text" name="event_fee"><br><br>
-		<input type="submit" value="Create new Event" name="submit">
-	</form>
+	<div class="container pt-5">
+		<h1>Admin View</h1>
+		<form action="../backend/eventMaker.php" method="POST">
+			<div  class="form-group">
+				<p>Enter event name</p>
+				<input class="form-control" type="text" name="event_name">
+				<?php if(!empty($users) && sizeof($users) != 0) { echo "<p>Select an event manager</p>$select_list";}
+				      else echo "<p>Write the user id of the event manager</p><input class='form-control' type='text' name='user_id' required>";
+				?>
+				<p>Select event type</p>
+				<select class="form-control" name="event_type">
+					<option value="non-profit_recurrent">non-profit recurrent</option>
+					<option value="non-profit">non-profit non-recurrent</option>
+					<option value="private_recurrent">private recurrent</option>
+					<option value="private">private non-recurrent</option>
+				</select>
+				<p>Enter user fee</p>
+				<input class="form-control" type="text" name="event_fee"><br><br>
+				<input type="submit" value="Create new Event" name="submit">
+			</div>
+		</form>
+	</div>
 
 </body>
 

@@ -47,7 +47,10 @@ require("navbar.php");?>
 								  <tbody>
 								  <tr>
 									  <td><button class='btn btn-primary' id='view_participants'>View participants</button></td>";
-									  if($group_manager){ echo "<td><button class='btn btn-primary'  id='update_participant' type='submit'>Update</button></td>";}
+									  if($group_manager){ 
+										echo "<td><button class='btn btn-primary'  id='new_participant'>Add new participant</button></td>
+											  <td><button class='btn btn-primary'  id='update_participant' type='submit'>Update</button></td>";
+									  }
 								  echo "
 									  </tr>
 									  </tbody>
@@ -55,6 +58,7 @@ require("navbar.php");?>
 									  </div>";
 			?>
 			</form>
+			<iframe  frameBorder="0" src="tags.php?type=group&group=<?php echo $group_id?>">
 		</div>
   <?php }?>
 </div>
@@ -96,8 +100,14 @@ require("navbar.php");?>
 			window.location.href = "view_participants.php?group_id="+group_id+"&group_manager="+group_manager+"&group_name="+group_name;
 		});
       
+		$("#new_participant").click(function (event) {
+		  event.preventDefault();
+			window.location.href = "new_participant.php?event_id="+event_id+"&group_id="+group_id;
+		});
+		
 	});//end document.ready
   </script>
+
 </body>
 
 </html>

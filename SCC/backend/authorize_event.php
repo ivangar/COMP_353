@@ -11,8 +11,10 @@ else if(isset($_POST["event_id"]))  {
 	$event_id = $_POST["event_id"];
 }
 else {
-	echo "No event id was provided";
-	exit();
+	if(!isset($silent_auth)) {
+		echo "No event id was provided";
+		exit();
+	}
 }
 
 $sql = "SELECT count(*) as 'permission' FROM events WHERE event_manager_id = $user_id AND event_id = $event_id";
@@ -27,6 +29,8 @@ if($permission == 0) {
 if($permission == 0) {
 	if(!isset($silent_auth))
 		header("Location: ../frontend/dashboard.php");
+	if(isset($is_event_manager))
+		unsset($is_event_manager);
 }
 else
 	$is_event_manager = $event_id;

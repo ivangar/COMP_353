@@ -43,23 +43,26 @@
     <title> Add Admin </title>
 </head>
 <body>
-
+    <br/>
+    <div class='container-fluid'>
     <?php 
         if(isset($searched_user_id)) {
             echo " <form action='../backend/add_admin.php' method='POST'>";
-            echo "Admin status for : $user_name <br>";
-            echo "<input type='number' value= '$role' name='role' min='0' max='3' required/><br>";
-            echo "<input type='hidden' value= '$searched_user_id' name='user_id' required/>";
-            echo "<input type='submit' value='Update'/>";
+            echo "Update Admin status for user: $user_name <hr/>
+                    Enter new Admin status:<div class='form-box'>";
+            echo "<input type='number' value= '$role' name='role' min='0' max='3' required/>";
+            echo "<input type='hidden' value= '$searched_user_id' name='user_id' required/> ";
+            echo "<input class='btn btn-primary' type='submit' value='Update'/></div>";
         }
         else {
             echo "<form action='#' method='get'>";
-            echo "Please enter user ID :<br>";
+            echo "Please enter the User's ID for new privileges :<br><div class='form-box'>";
             echo "<input type='text' name='user_id' required/> ";
-            echo "<input type='submit' value='Seach'/>";
+            echo "<input class='btn btn-primary' type='submit' value='Search'/></div>";
         }
     ?>
     </form>
+    </div>
 
 </body>
 </html>
