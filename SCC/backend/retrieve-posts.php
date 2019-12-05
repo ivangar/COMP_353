@@ -34,10 +34,16 @@ if ($result->num_rows > 0) {
         echo "	<div class='card-body pl-4 pr-4'>
 		<h5 class='card-title font-weight-bold pl-1'>" . $row['first_name'] . " " . $row['last_name'] . "<small class='font-weight-light pl-2'>" . $row['upload_date'] . "</small></h5>";
 		
-		if ($row['post_image'] != null) {
-			echo "<img class='m-4' width='250px' src=../uploads/" . $row['post_image'] . ">";
-		}
-		
+        if ($row['post_image'] != null) {
+            $ext = pathinfo($row['post_image'], PATHINFO_EXTENSION);
+            if($ext == "mp4") {
+                echo "<video width='320' height='240' controls><source src='../uploads/" . $row['post_image'] . "' type='video/mp4'></video>";
+            }
+            else {
+                echo "<img class='m-4' width='250px' src=../uploads/" . $row['post_image'] . ">";
+            }
+        }
+
         if ($row['post_content'] != null) {
             echo "<p class='card-text pl-4 alert alert-primary'>" . $row['post_content'] . "</p>";
         }
