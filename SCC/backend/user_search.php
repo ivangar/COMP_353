@@ -8,7 +8,8 @@ $group_id = $_GET["group_id"];
 
 if(isset($_GET["search"])) {
 	$search_query = $_GET["search"];
-	echo "Users with tags containing : $search_query<br>";
+	if($search_query != "")
+		echo "Users with tags containing : $search_query <br>";
 }
 else
 	$search_query = "";

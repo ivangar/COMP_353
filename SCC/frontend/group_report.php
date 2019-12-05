@@ -1,8 +1,6 @@
 <?php
 require("../backend/get_group_report_info.php");
 
-echo $group_id;
-
 //echo "Number of members :". $group_members->num_rows . "<br>";
 /*
 while($row = $group_members->fetch_assoc()) {
@@ -33,7 +31,7 @@ foreach($most_active_dates as $date) {
 	{
 		var frame = document.getElementById("search_view_user");
 		var search = document.getElementById("search_terms_user").value;
-		frame.src = "../backend/user_search.php?event=<?php echo $event_id?>&search="+search;
+		frame.src = "../backend/user_search.php?group_id=<?php echo $group_id?>&search="+search;
 	}
 
 	</script>
@@ -42,4 +40,4 @@ foreach($most_active_dates as $date) {
 <input id="search_terms_user" type="text" placeholder="search users" />
 <button onclick="searchUsers()">Search</button>
 <br>
-<iframe id="search_view_user" frameborder="0" width="800" height="500" src="../backend/user_search.php?group=<?php echo $group_id?>"></iframe> <br>
+<iframe id="search_view_user" frameborder="0" width="800" height="500" src="../backend/user_search.php?group_id=<?php echo $group_id?>"></iframe> <br>
