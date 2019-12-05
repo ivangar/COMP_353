@@ -1,19 +1,19 @@
 <?php
 
-if(!isset($_GET["group"]))
+if(!isset($_GET["group_id"]))
 	exit();
 include("connection.php");
 
-$group_id = $_GET["group"];
+$group_id = $_GET["group_id"];
 
 if(isset($_GET["search"])) {
 	$search_query = $_GET["search"];
-	echo "Users with tags containing : $search_query";
+	echo "Users with tags containing : $search_query<br>";
 }
 else
 	$search_query = "";
 
-$sql = "SELECT first_name , middle_name, last_name, users.user_id FROM `users` JOIN group_members ON users.user_id = group_members.user_id WHERE group_members.group_id = $group_id AND group_members.participant_status_id = 1 AND users.meta_data LIKE '%%'";
+$sql = "SELECT first_name , middle_name, last_name, users.user_id FROM `users` JOIN group_members ON users.user_id = group_members.user_id WHERE group_members.group_id = $group_id AND group_members.participant_status_id = 1 AND users.meta_data LIKE '%$search_query%'";
 $group_members = $conn->query($sql);
 
 echo "Number of users ". $group_members->num_rows . "<br>";
@@ -29,8 +29,6 @@ while($row = $group_members->fetch_assoc()) {
 	echo "*	last posted on : $last_post_date <br>";
 	echo "*	Has a total of $post_count posts<br>";
 }
-
-//	echo "<a target='_blank' href='../frontend/group_report.php?group_id=" . $row["group_id"]."'> Get report for : ". $row["name"]. "</a><br>";
 
 
 ?>

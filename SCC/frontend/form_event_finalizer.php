@@ -36,7 +36,7 @@ require("../backend/events/event_details.php");?>
 </head>
 
 <body>
-  <a href='event_manager_page.php'>Go Back</a>
+  <a href='dashboard.php'>Go Back</a>
   <a href='../backend/logout.php' class='right'>Logout</a>
   <h2 >Finalize Event </h2>
 

@@ -17,7 +17,7 @@ $end = strtotime($result->fetch_assoc()["end_date"]);
 if($today < $end) {
 	$sql = "Delete FROM poll_results WHERE poll_id = $poll_id AND user_id = $user_id";
 	$conn->query($sql);
-	header("Location: ../frontend/poll.php?poll_id=$poll_id");
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 }
 

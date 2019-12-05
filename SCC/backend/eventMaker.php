@@ -1,5 +1,8 @@
 <?php
 include("connection.php");
+session_start();
+
+$user_id = $_SESSION["active_user"]["user_id"];
 $event_manager = $_POST['user_id'];
 $event_name = $_POST['event_name'];
 $event_fee = $_POST['event_fee'];
@@ -69,7 +72,14 @@ if ($conn->query($insert_event_admin) === TRUE) {
 $sql = "UPDATE events SET primary_event_group_id = $group_id WHERE event_id = $event_id";
 							
 if ($conn->query($sql) === TRUE) {
-    header("Location: ../frontend/dashboard.php");
+	if($user_id == $event_manager)
+		header("Location: ../frontend/form_event_finalizer.php?event_id=$event_id");
+	else {
+		$_SESSION['new_event'] = true;
+		header("Location: ../frontend/dashboard.php");
+	}
+
+	
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
