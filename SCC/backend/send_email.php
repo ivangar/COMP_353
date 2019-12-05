@@ -5,21 +5,18 @@
     include ("connection.php");
     include ("../frontend/emails_view.php");
 
-    $receiver = "'" . $_POST["email_receiver"] . "'";
+    $receiver = $_POST["email_receiver"];
     $title = "'" . $_POST["email_title"] . "'";
     $body = "'" . $_POST["email_body"] . "'";
-
-    $sql = "Insert into emails(receiver_id, sender_email, title, body) Select "
-            . "u.user_id, "
-            . $_SESSION["active_user"]["email"]
-            . ", '"
-            . $conn->real_escape_string($title)
-            . "', '"
-            . $conn->real_escape_string($body)
-            . "' From users u Where u.email = "
-            . $receiver;
+    $sender = "'" . $_SESSION["active_user"]["email"] . "'";
+    $_SESSION['reciver_email'] = $receiver;
+    include("retrieve-user-from-email.php");
+    $receiver_id = $_SESSION['reciver_id'];
+    $sql = "INSERT INTO `emails`(`receiver_id`, `sender_email`, `title`, `body`) VALUES ('$receiver_id', $sender , $body, $sender)";
 
     if ($conn->query($sql) != TRUE) {
+        trigger_error('Invalid query: ' . $conn->error);
+
         if(!isset($_SESSION['errors'])){
             $_SESSION['errors'] = " Error: Email error, did not send email.";
         }
