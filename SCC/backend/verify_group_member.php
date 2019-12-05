@@ -15,7 +15,7 @@ $sql = "SELECT * \n"
 
     . "FROM `group_members`\n"
 
-    . "WHERE user_id = $userid AND group_id = $group_id";
+    . "WHERE user_id = $userid AND group_id = $group_id AND participant_status_id = 1";
 
 $result = $conn->query($sql);
 if($result){
