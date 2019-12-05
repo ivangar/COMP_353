@@ -59,7 +59,7 @@ if(isset($userid)){
                     <li class="nav-item"> <?php
                         include("../backend/authorize_god.php");
                         if(isset($is_admin) && $is_admin == 2)
-                            echo '<a class="nav-link" href="admin_create-event.php">Add Admin</a>';
+                            echo '<a class="nav-link" href="add_admin.php">Add Admin</a>';
                     ?>
                     <li class="nav-item"> <?php
                         include("../backend/authorize_controller.php");
