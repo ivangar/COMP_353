@@ -41,7 +41,17 @@ if ($result && $result->num_rows > 0) {
     		$event_details_url = "<a href='event_details_page.php?event_id=" . $row["event_id"] . "'>view details</a>";
     	}
         $event_name = "<a href='event_home.php?event_id=" . $row["event_id"] . "&group_id=" . $row["primary_event_group_id"] . "'>" . $row['event_name'] . "</a>";
-    	$event_info = array($row["event_id"],$event_name,$row["start_date"],$row["end_date"],$status,$event_details_url);
+        $event_info = array($row["event_id"],$event_name,$row["start_date"],$row["end_date"],$status,$event_details_url);
+        
+        $silent_auth = true;
+        $event_id = $row["event_id"];
+        include("../backend/authorize_event.php");
+
+        if(isset($is_event_manager)) {
+            $payment = "<a href='../backend/make_payment.php?event_id=$event_id'>Make Payment</a>";
+            array_push($event_info,$payment);    
+        }
+
     	array_push($event_rows,$event_info);
     	$event_info = array();
     }
