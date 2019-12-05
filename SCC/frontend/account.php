@@ -1,7 +1,8 @@
 <?php 
+session_start();
+include("navbar.php");
 include("../backend/connection.php");
 
-session_start();
 
 if(!isset($_SESSION['active_user'])) {
 	exit();
