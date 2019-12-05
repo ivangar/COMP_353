@@ -16,151 +16,138 @@ require("navbar.php");?>
   <!-- Place favicon.ico in the root directory -->
 
   <meta name="theme-color" content="#fafafa">
-
-  <style type="text/css">
-  	h3{ 
-  		text-align: center; 
-  	}
-    div.container{
-    	margin: auto; 
-    	width: 50%;
-    }
-    table{
-    	text-align: left;
-    }
-    .right {
-      position: absolute;
-      right: 0px;
-      padding: 10px;
-    }
-</style>
 </head>
 
 <body>
+  <div class="p-5 position-absolute">
+    <?php $go_back_url = ($event_manager) ? "<a class='btn btn-outline-primary pr-2' href='event_manager_page.php'>Go Back</a>" : "<a class='btn btn-outline-primary pr-2' href='dashboard.php'>Go Back</a>";
+          echo $go_back_url; ?>
+    <a class='btn btn-outline-primary' href='../backend/logout.php'>Logout</a>
+  </div>
 
-  <?php $go_back_url = ($event_manager) ? "<a href='event_manager_page.php'>Go Back</a>" : "<a href='dashboard.php'>Go Back</a>";
-        echo $go_back_url; ?>
-  <a href='../backend/logout.php' class='right'>Logout</a>
-  <h3 >Event Details</h3>
-
+<div class="container text-center pt-5">
+  
+  <h3 class="pt-1 pb-5">Event Details</h3>
+  
   <?php if(!empty($event_id) && $event_id) { ?>
-  	<div class="container">
-
-	  	<form action="../backend/events/update_event.php" method="post" name="update_event_form" id="update_event_form" accept-charset="utf-8">
-        
-	  			<?php 
+  	<div class="flex border border-primary rounded-top mb-4">
+      
+      <form action="../backend/events/update_event.php" class="form" method="post" name="update_event_form" id="update_event_form" accept-charset="utf-8">
+      
+      <?php 
            $disabled = (!$event_manager) ? "disabled='disabled'" : "";
 	  			 echo "<input type='hidden' name='event_id' value='$event_id'>
-                 <input type='hidden' name='location_id' value='$event_location_id'>
-                 <input type='hidden' name='payment_id' value='$event_payment_id'>
-                 <input type='hidden' name='resource_id' value='$event_resource_id'>";
-
+           <input type='hidden' name='location_id' value='$event_location_id'>
+           <input type='hidden' name='payment_id' value='$event_payment_id'>
+           <input type='hidden' name='resource_id' value='$event_resource_id'>";
+           
 	  			 if(!empty($event_info) && sizeof($event_info) != 0) {
-            echo "<fieldset $disabled><legend>Main details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
-	  				foreach($event_info as $label => $value) { 
-	  							$column_name = $event_info_ids[$label];
-                  $input_type = "text";
-
-                  if($column_name === "type"){
+             echo "<fieldset $disabled><legend class='bg-primary p-4 mb-4 text-white rounded-top'>Main details</legend><table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'><tbody>";
+             foreach($event_info as $label => $value) { 
+               $column_name = $event_info_ids[$label];
+               $input_type = "text";
+               
+               if($column_name === "type"){
                     $options = ($value === "private") ? "<option value='private' selected>private</option><option value='non-profit'>non-profit</option>" : "<option value='private'>private</option><option value='non-profit' selected>non-profit</option>";
-                     echo "<tr><td><label>$label</label></td><td><select name='event_types'>$options</select></td></tr>";
+                    echo "<tr><td><label>$label</label></td><td><select class='form-control' name='event_types'>$options</select></td></tr>";
                   }
                     
                   elseif($column_name === "recurrent"){
-                     $options = ($value == 1) ? "<option value='1' selected>yes</option><option value='0'>no</option>" : "<option value='1'>yes</option><option value='0' selected>no</option>";
-                     echo "<tr><td><label>$label</label></td><td><select name='recurrent_event'>$options</select></td></tr>";
-                  }
-
-                  elseif($column_name === "status"){
-                     $radio_btns = ($value == 1) ? 
-                                "<input type='radio' name='status' title='status' value='1' checked> active <input type='radio' name='status' title='status' value='2' > archived " : 
+                    $options = ($value == 1) ? "<option value='1' selected>yes</option><option value='0'>no</option>" : "<option value='1'>yes</option><option value='0' selected>no</option>";
+                     echo "<tr><td><label>$label</label></td><td><select class='form-control' name='recurrent_event'>$options</select></td></tr>";
+                    }
+                    
+                    elseif($column_name === "status"){
+                      $radio_btns = ($value == 1) ? 
+                      "<input type='radio' name='status' title='status' value='1' checked> active <input type='radio' name='status' title='status' value='2' > archived " : 
                                 "<input type='radio' name='status' title='status' value='1' > active <input type='radio' name='status' title='status' value='2' checked > archived ";
-                     echo "<tr><td><label>$label</label></td><td>$radio_btns</td></tr>";
-                  }
-
+                                echo "<tr><td><label>$label</label></td><td>$radio_btns</td></tr>";
+                              }
+                              
                   //Check date types
                   elseif($column_name === "start_date" || $column_name === "end_date" || $column_name === "period"){
                     
-                    $input = "<input type='date' name='$column_name' title='$column_name'>";
+                    $input = "<input type='date' class='form-control' name='$column_name' title='$column_name'>";
                     
                     if(!empty($value))
-                      $input = "<input type='date' name='$column_name' title='$column_name' value='$value'>";
-
+                    $input = "<input type='date' class='form-control' name='$column_name' title='$column_name' value='$value'>";
+                    
                     echo "<tr><td><label>$label</label></td><td>$input</td></tr>";
-
+                    
                   }
-
+                  
                   else{
-                      echo "<tr><td><label>$label</label></td><td><input type='$input_type' name='$column_name' title='$column_name' value='$value'></td></tr>";
-                  }
-	  							 
+                      echo "<tr><td><label>$label</label></td><td><input class='form-control' type='$input_type' name='$column_name' title='$column_name' value='$value'></td></tr>";
+                    }
+                    
 	  				}
             echo "</tbody></table></fieldset>";
 	  			}
-
+          
           if(!empty($event_location) && sizeof($event_location) != 0) {
-            echo "<div style='padding-top:30px;'><fieldset $disabled><legend>Location details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<div style='padding-top:30px;'><fieldset $disabled><legend class='bg-primary p-4 mb-4 text-white rounded-top'>Location details</legend><table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'><tbody>";
             foreach($event_location as $label => $value) { 
                   $column_name = $event_location_ids[$label];
-                  echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
-            }
+                  echo "<tr><td><label>$label</label></td><td><input class='form-control' type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
+                }
             echo "</tbody></table></fieldset></div>";
           }
-
+          
           if(!empty($event_payment) && sizeof($event_payment) != 0) {
-            echo "<div style='padding-top:30px;'><fieldset $disabled><legend>Payment details</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<div style='padding-top:30px;'><fieldset $disabled><legend class='bg-primary p-4 mb-4 text-white rounded-top'>Payment details</legend><table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'><tbody>";
             foreach($event_payment as $label => $value) { 
-                  $column_name = $event_payment_ids[$label];
-                  echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
+              $column_name = $event_payment_ids[$label];
+              echo "<tr><td><label>$label</label></td><td><input class='form-control' type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
             }
             echo "</tbody></table></fieldset></div>";
           }
 
           if(!empty($event_resources) && sizeof($event_resources) != 0) {
-            echo "<div style='padding-top:30px;'><fieldset $disabled><legend>Resources</legend><table cellpadding='10' style='text-align: left;'><tbody>";
+            echo "<div style='padding-top:30px;'><fieldset $disabled><legend class='bg-primary p-4 mb-4 text-white rounded-top'>Resources</legend><table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'><tbody>";
             foreach($event_resources as $label => $value) { 
                   $column_name = $event_resources_ids[$label];
-                  echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
+                  echo "<tr><td><label>$label</label></td><td><input type='text' class='form-control' name='$column_name' title='$column_name' value='$value'></td></tr>"; 
             }
             echo "</tbody></table></fieldset></div>";
           }
 
           if($event_manager){
             echo "<div style='padding-top:30px;'>
-                  <table cellpadding='10' style='text-align: left;'>
-                    <tbody>
+            <table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'>
+            <tbody>
                       <tr>
-                      <td><button id='update_event' type='submit'>Update</button></td>
-                      <td><button id='import_users' >Import users</button></td>
-                      <td><button id='view_participants'>View participants</button></td>
-                      <td><button id='new_participant'>Add new participant</button></td>
-                      <td><button id='event_report'>View Event Report</button></td>
+                      <td><button class='btn btn-primary'  id='update_event' type='submit'>Update</button></td>
+                      <td><button class='btn btn-primary'  id='import_users' >Import users</button></td>
+                      <td><button class='btn btn-primary'  id='view_participants'>View participants</button></td>
+                      <td><button class='btn btn-primary'  id='new_participant'>Add new participant</button></td>
+                      <td><button class='btn btn-primary'  id='event_report'>View Event Report</button></td>
                       </tr>
-                    </tbody>
-                  </table>
-                  </div>";
-          }
-
-          if(!$event_manager){
-            echo "<div style='padding-top:30px;'>
-                  <table cellpadding='10' style='text-align: left;'>
-                    <tbody>
-                      <tr>
-                      <td><button id='view_participants'>View participants</button></td>
+                      </tbody>
+                      </table>
+                      </div>";
+                    }
+                
+                    if(!$event_manager){
+                      echo "<div style='padding-top:30px;'>
+                  <table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'>
+                  <tbody>
+                  <tr>
+                      <td><button class='btn btn-primary' id='view_participants'>View participants</button></td>
                       </tr>
-                    </tbody>
-                  </table>
-                  </div>";
-          }
-	  						
-	  			?>
+                      </tbody>
+                      </table>
+                      </div>";
+                    }
+                    
+                    ?>
 
-		</form>
+    </form>
 
-	</div>
+  </div>
+</div>
 
 
-  <?php }?>
+<?php }?>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script type="text/javascript">
 	$(document).ready(function () {
@@ -175,12 +162,12 @@ require("navbar.php");?>
     var group_manager = <?php echo $event_manager; ?>;
 
 		$( "#update_event_form" ).submit(function( event ) {
-			  event_data = $("#update_event_form").serializeArray();
+      event_data = $("#update_event_form").serializeArray();
 		    
         event.preventDefault();
 
 		    $.ajax({
-              url: "../backend/events/update_event.php",
+          url: "../backend/events/update_event.php",
               cache: false,
               type: "POST",
               dataType: "html",
@@ -196,7 +183,7 @@ require("navbar.php");?>
     });
 
     $("#import_users").click(function (event) {
-        event.preventDefault();
+      event.preventDefault();
         window.location.href = "import_users.php?event_id="+event_id;
     });
 
@@ -207,12 +194,12 @@ require("navbar.php");?>
     });
 
     $("#new_participant").click(function (event) {
-        event.preventDefault();
+      event.preventDefault();
         window.location.href = "new_participant.php?event_id="+event_id+"&group_id="+group_id;
     });
 	
 	$("#event_report").click(function (event) {
-        event.preventDefault();
+    event.preventDefault();
         window.location.href = "event_report.php?event_id="+event_id;
     });
       
