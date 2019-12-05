@@ -5,12 +5,6 @@
 if(!isset($_SESSION)){
     session_start();
 }
-//check that user is logged in
-if(isset($userid)){
-    $userid = $_SESSION['active_user']['user_id'];
-} else {
-    $_SESSION['error'] = "Error - No user logged in";
-}
 ?>
 <html>
 	<head>
