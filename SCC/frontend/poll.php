@@ -1,12 +1,12 @@
 <?php
 //require("../backend/polldata.php");
 include("../backend/connection.php");
-session_start();
-
+//session_start();
+/*
 if(!isset($_SESSION['active_user']))
 {
 	header("Location: ../frontend/dashboard.php");
-}
+}*/
 
 $user_id = $_SESSION['active_user']['user_id'];
 
