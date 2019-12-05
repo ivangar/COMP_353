@@ -16,13 +16,9 @@ $group_id = $_POST['group_id'];
 $sql = "DELETE FROM `group_members` WHERE `user_id` = '$userid' AND `group_id` = '$group_id'";
 $result = $conn->query($sql);
 if($result){
-		echo "here?";
-	echo "$userid";
-	echo "$group_id";
+	header("Location: ../frontend/dashboard.php");
 } else {
-	echo "here?";
-	echo "$userid";
-	echo "$group_id";
+
 }
 
 ?>

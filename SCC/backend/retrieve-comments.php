@@ -35,7 +35,8 @@ if (!$resultComment) {
 }
 if($resultComment -> num_rows > 0){
 	while ($rowComment = $resultComment-> fetch_assoc()) {
-		echo "<div class='comment'><div><div>". $rowComment['comment'] . "</div><div>" . $rowComment['comment_date'] . "</div></div>" . "<div>by " . $rowComment['first_name'] . $rowComment['middle_name'] . $rowComment['last_name'] . "</div></div>";
+        echo "<li class='list-group-item'><small>" . $rowComment['comment_date'] . "</small><h6 class='font-weight-bold'>" . $rowComment['first_name'] . $rowComment['middle_name'] . $rowComment['last_name'] . ": <span class='font-weight-normal'>". $rowComment['comment'] . "</span></h6></li>";
+
 	}
 }
 
