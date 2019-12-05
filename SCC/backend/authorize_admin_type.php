@@ -8,6 +8,9 @@ $sql = "SELECT COUNT(*) AS 'permission' FROM user_roles WHERE user_id = $user_id
 $permission = $conn->query($sql)->fetch_assoc()['permission'];
 
 if ($permission == 0) {
+	if(!isset($silent_auth))
 	  header("Location: ../frontend/dashboard.php");
 }
+else
+	$is_admin = $admin_type;
 ?>
