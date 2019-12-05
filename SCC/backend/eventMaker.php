@@ -37,18 +37,22 @@ $sql = "INSERT INTO event_payment (account_holder, address, phone_no, bank_name,
 
 if($conn->query($sql) === TRUE) {
 	$event_payment_id = $conn->insert_id;
+	echo "event-succes";
 }
 
 $sql = "INSERT INTO resources (flat_fee, type, unit, resource_name, extra_fee, discount) VALUES (NULL, NULL, NULL, NULL, NULL, NULL)";
 
 if($conn->query($sql) === TRUE) {
 	$resource_id = $conn->insert_id;
+	echo "resource succes";
 }
 
 $sql = "INSERT INTO event_locations (address, phone_no, email, room_no, renting_cost, capacity) VALUES (NULL, NULL, NULL, NULL, NULL, NULL)";
 
 if($conn->query($sql) === TRUE) {
 	$location_id = $conn->insert_id;
+	echo "eventlocation";
+
 }
 
 
@@ -56,6 +60,8 @@ $sql = "INSERT INTO events (event_payment_id, event_type_id, resource_id, event_
 
 if($conn->query($sql) === TRUE) {
 	$event_id = $conn->insert_id;
+	echo "event alont success";
+
 }
 
 $sql = "INSERT INTO `groups` (event_id, group_manager_id, name, details) VALUES ($event_id, $event_manager, $event_name, 'Main event group')";
@@ -76,7 +82,6 @@ if ($conn->query($sql) === TRUE) {
 		header("Location: ../frontend/form_event_finalizer.php?event_id=$event_id");
 	else {
 		$_SESSION['new_event'] = true;
-		header("Location: ../frontend/dashboard.php");
 	}
 
 	
