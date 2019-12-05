@@ -50,7 +50,7 @@ if(isset($userid)){
                             include("../backend/authorize_event.php");
                             if(isset($is_event_manager)) {
                                 echo "<li class='nav-item'>";
-                                echo '<a class="nav-link" href="create_event.php' . $params . '">Create Poll</a>';
+                                echo '<a class="nav-link" href="create_poll.php' . $params . '">Create Poll</a>';
                                 echo "</li>";
                             }
                         }

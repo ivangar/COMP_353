@@ -9,7 +9,7 @@ $event_primary_group_id = $_GET["primary"];
 
 if(isset($_GET["search"])) {
 	$search_query = $_GET["search"];
-	echo "Groups with tags containing : $search_query";
+	echo "Groups with tags containing : $search_query<br>";
 }
 else
 	$search_query = "";

@@ -1,12 +1,6 @@
 <?php
-//require("../backend/polldata.php");
 include "../backend/connection.php";
-//session_start();
-/*
-if(!isset($_SESSION['active_user']))
-{
-header("Location: ../frontend/dashboard.php");
-}*/
+
 
 $user_id = $_SESSION['active_user']['user_id'];
 
@@ -75,5 +69,15 @@ while ($poll_data = $polls->fetch_assoc()) {
 					</form> ";
         }
     }
+    $silent_auth = true;
+    include("../backend/authorize_event.php");
+    if(isset($is_event_manager))    {
+        echo "<form action='../backend/poll_remove.php' method='POST'>";
+        echo "<input type='hidden' name='id' value ='$poll_id'/>
+					<br>  <input type='submit' value='Remove Poll'>
+					</form> ";
+
+    }
+
 }
 echo "</div></div></body>";
