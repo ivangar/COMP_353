@@ -35,7 +35,7 @@
                 . ", 'sandra@email.com', '"
                 . $conn->real_escape_string("New Registration")
                 . "', '"
-                . $conn->real_escape_string("Congrats on creating an account, your user id to log in is :")
+                . $conn->real_escape_string("Congrats on creating an account, your UserId for logging in is: ")
                 . $userid
                 . "')";
 

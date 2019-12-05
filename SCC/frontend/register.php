@@ -30,16 +30,16 @@ echo
 			<form action='../backend/register_user.php' method='post' enctype='multipart/form-data'>
 			    <table>
 			        <td>
-				<input type='text' name='register_fname' id='register_fname' placeholder='First Name'/>
+				<input type='text' name='register_fname' id='register_fname' placeholder='First Name' required/>
 				<input type='text' name='register_mname' id='register_mname' placeholder='Middle Name'/>
-				<input type='text' name='register_lname' id='register_lname' placeholder='Last Name'/>
-				<input type='password' name='register_password' id='register_password' placeholder='Password'/>
+				<input type='text' name='register_lname' id='register_lname' placeholder='Last Name' required/>
+				<input type='password' name='register_password' id='register_password' placeholder='Password' required/>
 				    </td>
 				    <td>
-				<input type='text' name='register_address' id='register_address' placeholder='Address'/>
+				<input type='text' name='register_address' id='register_address' placeholder='Address' required/>
 				<input type='text' name='register_org' id='register_org' placeholder='Organization'/>
-				<input type='email' name='register_email' id='register_email' placeholder='Email: g@gmail.com'/>
-				<input type='date' name='register_dob' id='register_dob' placeholder='Bday dd/mm/yy'/>
+				<input type='email' name='register_email' id='register_email' placeholder='Email: g@gmail.com' required/>
+				<input type='date' name='register_dob' id='register_dob' placeholder='Bday dd/mm/yy' required/>
 				</tr>
 				</table>
 				<button class='btn btn-info btn-block login' type='submit'>Complete Registration</button>
