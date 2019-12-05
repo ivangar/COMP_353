@@ -3,6 +3,7 @@ if(!isset($_SESSION)){
     session_start();
 }
 require("../backend/connection.php");
+include("navbar.php");
 $event_id = $_GET['event_id'];
 
 //check that user is logged in

@@ -31,8 +31,8 @@ if(!isset($_SESSION)){
                     </li>
                     <li class="nav-item"><?php
                         if(isset($_GET['event_id']) && isset($_GET['group_id']) && $_GET['event_id'] !="" && $_GET['group_id']!= "") {
-                            $params = "?event_id=" . $_GET['event_id'] . "&group_id=" . $_GET['group_id'] . "&create-group=true";
-                            echo '<a class="nav-link" href="event_home.php' . $params . '">Create Group</a>';
+                            $params = "?event_id=" . $_GET['event_id'] . "&create-group=true";
+                            echo '<a class="nav-link" href="create-group.php' . $params . '">Create Group</a>';
                         }
                         else if(isset($is_admin)) {
                             echo '<a class="nav-link" href="admin_create-event.php">Create Event</a>';
