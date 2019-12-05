@@ -55,14 +55,19 @@ if($conn->query($sql) === TRUE) {
 	$event_id = $conn->insert_id;
 }
 
-$sql = "INSERT INTO `groups` (event_id, name, details) VALUES ($event_id, $event_name, 'Main event group')";
+$sql = "INSERT INTO `groups` (event_id, group_manager_id, name, details) VALUES ($event_id, $event_manager, $event_name, 'Main event group')";
 
 if($conn->query($sql) === TRUE) {
 	$group_id = $conn->insert_id;
 }
 
-$sql = "UPDATE events SET primary_event_group_id = $group_id WHERE event_id = $event_id";
+$insert_event_admin = "INSERT INTO group_members (user_id, group_id, participant_status_id) VALUES ($event_manager, $group_id, 1)";
+if ($conn->query($insert_event_admin) === TRUE) {
+	$var = 'success';
+}
 
+$sql = "UPDATE events SET primary_event_group_id = $group_id WHERE event_id = $event_id";
+							
 if ($conn->query($sql) === TRUE) {
     header("Location: ../frontend/dashboard.php");
 } else {
