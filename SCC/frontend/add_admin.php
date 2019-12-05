@@ -35,7 +35,6 @@
                 unset($searched_user_id);
             }
         }
-
     }
 ?>
 
