@@ -5,7 +5,7 @@ html,body{
 
 .login-container{
     position: relative;
-    width: 300px;
+    width: 400px;
     margin: 80px auto;
     padding: 20px 40px 40px;
     text-align: center;
@@ -15,7 +15,7 @@ html,body{
 
 #output{
     position: absolute;
-    width: 300px;
+    width: 400px;
     top: -75px;
     left: 0;
     color: #fff;
@@ -79,7 +79,6 @@ html,body{
 
 .form-box input[type="text"]{
     border-radius: 5px 5px 0 0;
-    text-transform: lowercase;
 }
 
 .form-box input[type="password"]{
