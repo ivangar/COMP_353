@@ -1,3 +1,4 @@
 
 SCgit rm -r --cached .
 SCCC/frontend/HotReloader.php
+*.db

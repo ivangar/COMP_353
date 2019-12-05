@@ -32,6 +32,11 @@ echo
 				<button class='btn btn-info btn-block login' type='submit'>Login</button>
 			</form>
 		</div>
+		<div>
+            <a href='register.php' role='button' class='nav-link btn btn-info btn-block login'>
+                Register
+            </a>
+		</div>
 	</div>    
 </div>
 

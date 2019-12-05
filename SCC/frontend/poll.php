@@ -1,7 +1,6 @@
 <?php
 include "../backend/connection.php";
 
-
 $user_id = $_SESSION['active_user']['user_id'];
 
 $sql = "SELECT * FROM poll WHERE group_id = $group_id";
@@ -31,53 +30,62 @@ while ($poll_data = $polls->fetch_assoc()) {
         $stillAvailable = false;
     }
 
-    echo $poll_data['title'] . "<br>";
+    echo "<div class='card m-4 shadow'>
+            <div class='card-header'>
+                <h3>" . $poll_data['title'] . "</h3>
+            </div>
+          <div class='card-block p-4'>";
 
     $sql = "SELECT option_selected FROM poll_results WHERE poll_id = $poll_id and user_id = $user_id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0 || !$stillAvailable) {
-        echo "Poll results  <br>";
+        echo "<h6 class='font-weight-bold'>Poll results:</h6>";
         $our_selection = $result->fetch_assoc()["option_selected"];
         foreach ($options as $option) {
+
             if ($optionCount == $our_selection) {
-                echo "<b>" . $option . "</b> : ";
+                echo "<p class = 'bg-light p-2' rounded><b>" . $option . "</b>";
             } else {
-                echo $option . " : ";
+                echo "<p class = 'bg-light p-2 rounded'>" . $option;
             }
 
             $sql = "SELECT count(option_selected) as votes FROM `poll_results` WHERE option_selected = " . $optionCount++;
             $vote_count = $conn->query($sql)->fetch_assoc()["votes"];
-            echo $vote_count . "<br>";
+            echo "<span class='badge badge-secondary p-2 float-right'>" . $vote_count . "</span></p>";
         }
 
         if ($stillAvailable) {
-            echo "Ends in :" . $end;
+            echo "<div class='alert alert-warning' role='alert'>Ends in : " . $end . "</div>";
 
             echo "<form action='../backend/poll_change.php' method='POST'>
 				<input type='hidden' name='id' value ='$poll_id'/>
-				<br>  <input type='submit' value='Change Vote'></form>
+				<br>  <input class='btn btn-primary' type='submit' value='Change Vote'></form></div></div>
 			";
         }
     } else {
         if (count($options) > 1) {
-            echo "<form action='../backend/poll_submit.php' method='POST'>";
+            echo "<form action='../backend/poll_submit.php' method='POST'><ul class='list-group'>";
             foreach ($options as $option) {
-                echo "<input type='radio' name='vote' value='" . $optionCount++ . "'/>$option<br> ";
+                echo "<li class='list-group-item m-0'><input class='mr-1' type='radio' name='vote' value='" . $optionCount++ . "'/> $option </li> ";
             }
-            echo "<input type='hidden' name='id' value ='$poll_id'/>
-					<br>  <input type='submit' value='Submit'>
-					</form> ";
+            echo "</ul></div>
+
+            <div class='card-footer text-xs-center'>
+                <button type='submit' value='Submit' class='btn btn-primary btn-block btn-sm'>Vote</button>
+            </div>
+            <input type='hidden' name='id' value ='$poll_id'/>
+            </form></div>";
         }
     }
     $silent_auth = true;
-    include("../backend/authorize_event.php");
-    if(isset($is_event_manager))    {
-        echo "<form action='../backend/poll_remove.php' method='POST'>";
+    include "../backend/authorize_event.php";
+    if (isset($is_event_manager)) {
+        echo "<form class='text-center' action='../backend/poll_remove.php' method='POST'>";
         echo "<input type='hidden' name='id' value ='$poll_id'/>
-					<br>  <input type='submit' value='Remove Poll'>
-					</form> ";
+                <input class='btn btn-secondary' type='submit' value='Remove Poll'>
+                </form> ";
 
     }
 
 }
-echo "</div></div></body>";
+echo "</div></div></div></div></body>";
