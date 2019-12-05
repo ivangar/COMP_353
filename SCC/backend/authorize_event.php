@@ -19,7 +19,10 @@ $sql = "SELECT count(*) as 'permission' FROM events, user_roles WHERE user_roles
 $permission = $conn->query($sql)->fetch_assoc()['permission'];
 
 if($permission == 0) {
-    header("Location: ../frontend/dashboard.php");
+	if(!isset($silent_auth))
+		header("Location: ../frontend/dashboard.php");
+	else
+		$is_event_manager = true;
 
 }
 
