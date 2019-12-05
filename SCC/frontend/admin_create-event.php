@@ -42,7 +42,7 @@
 					<option value="private">private non-recurrent</option>
 				</select>
 				<p>Enter user fee</p>
-				<input class="form-control"ZZZzzzz type="text" name="event_fee"><br><br>
+				<input class="form-control" type="text" name="event_fee"><br><br>
 				<input type="submit" value="Create new Event" name="submit">
 			</div>
 		</form>
