@@ -32,6 +32,4 @@ while($row = $group_members->fetch_assoc()) {
 	echo "*	Has a total of $post_count posts<br>";
 	echo "*	Has a total of $comment_count comments<br>";
 }
-
-
 ?>

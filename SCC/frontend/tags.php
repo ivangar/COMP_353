@@ -14,7 +14,7 @@ if($type == "group")
 		exit();
 	
 	$group_id = $_GET["group"];
-	$sql = "SELECT meta_data AS 'tags' FROM groups WHERE group_id = $group_id";
+	$sql = "SELECT meta_data AS 'tags' FROM `groups` WHERE group_id = $group_id";
 	$params = "type=group&group=".$group_id;
 
 }
@@ -32,8 +32,6 @@ $tag_data = $conn->query($sql)->fetch_assoc();
 
 $tags = explode(";", $tag_data["tags"]);
 
-if(count($tags) == 1 && $tags[0] == " ")
-	exit();
 
 $tagCount = 0;
 ?>
@@ -76,7 +74,8 @@ $tagCount = 0;
 </script>
 <?php
 foreach($tags as $tag) {
-	echo "<button onclick='removeTag(this.name)' class='remove-tag-btn btn btn-secondary' name='".$tagCount++."' value='$tag'> $tag </button>";
+	if($tag != "")
+		echo "<button onclick='removeTag(this.name)' class='remove-tag-btn btn btn-secondary' name='".$tagCount++."' value='$tag'> $tag </button>";
 }
 
 ?>

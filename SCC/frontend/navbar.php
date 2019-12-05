@@ -57,7 +57,7 @@ if(!isset($_SESSION)){
                     ?>
                     <li class="nav-item"> <?php
                         include("../backend/authorize_controller.php");
-                        if(isset($is_admin) && $is_admin == 1)
+                        if(isset($is_admin) && $is_admin >= 1)
                             echo '<a class="nav-link" href="controller_dashboard.php">Controller Dashboard</a>';
                     ?>
                     <li class="nav-item">

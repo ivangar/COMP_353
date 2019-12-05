@@ -1,10 +1,8 @@
 <?php
-include "connection.php";
 
-if (!isset($_SESSION)) {session_start();}
+//if (!isset($_SESSION)) {session_start();}
 
-$group_id = $_GET["group_id"];
-
+//$group_id = $_GET["group_id"];
 $sql = "SELECT type, recurrent, flat_fee, extra_fee, discount, charge_rate
         FROM (
                 (
@@ -45,28 +43,30 @@ $sql = "SELECT type, recurrent, flat_fee, extra_fee, discount, charge_rate
 
             ON (t1.resource_id = t3.resource_id)
 ";
-
 $result = $conn->query($sql);
 
 $row = $result->fetch_assoc();
-
+/*
 echo 'type: ' . $row['type'] . '<br>';
 echo 'recurrent: ' . $row['recurrent'] . '<br>';
 echo 'flat_fee: ' . $row['flat_fee'] . '<br>';
 echo 'extra_fee: ' . $row['extra_fee'] . '<br>';
 echo 'discount: ' . $row['discount'] . '<br>';
 echo 'charge_rate: ' . $row['charge_rate'] . '<br>';
-
+*/
 //if established bandwidth or storage is over, subtract it from base storage, multiply it by charge rate
 
 $total = 0;
 $discount = 0;
+/*
 if ($row['type'] == "non-profit") {
     echo 'non profits pay ' . $total;
 } else {
-    if ((int) $row['discount'] == 1) {
-        $discount = (int) $row['discount'];
-    }
-    $total = (int) $row['flat_fee'] + (int) $row['extra_fee'] - (int) $row['discount'];
-    echo 'You owe ' . $total;
+
+}*/
+
+if ((int) $row['discount'] == 1) {
+    $discount = (int) $row['discount'];
 }
+$total = (int) $row['flat_fee'] + (int) $row['extra_fee'] - (int) $row['discount'];
+//echo 'You owe ' . $total;
