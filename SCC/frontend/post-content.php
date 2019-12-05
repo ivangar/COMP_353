@@ -16,7 +16,7 @@
 			<label class="pt-4">Upload image</label>
 			<div class="custom-file">
 				<input type="file" class="custom-file-input" name="fileToUpload" id="fileToUpload">
-				<label class="custom-file-label" for="fileToUpload">Select image to upload</label>
+				<label class="custom-file-label" for="fileToUpload">Select image/video to upload</label>
 			</div>
 	    	<label class="pt-4">Set Permission</label>
 	    	<select name="permission_type" class="custom-select custom-select-lg mb-3">

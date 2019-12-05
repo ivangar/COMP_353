@@ -133,7 +133,6 @@ require("navbar.php");
             .done(function( data ) {
               if(data === "success"){
                 alert("participant has been added to the event");
-                window.location.href = "event_details_page.php?event_id="+event_id;
               } 
                 else alert(data);
             })
