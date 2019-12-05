@@ -28,7 +28,7 @@ if ($result && $result->num_rows > 0) {
 
 if(!empty($group_rows) && sizeof($group_rows) != 0)
 {	
-	echo "<div style='position:absolute; left:0; text-align: center;'> <div style='padding: 30px 0;'><a href='../frontend/view_group_details.php?event_id=$event_id&group_id=$group_id'>Group details</a></div>";
+	echo "<div style='position:absolute; left:0; text-align: center;'> <div style='padding: 30px 0;'><a href='../frontend/view_group_details.php?event_id=$event_id&group_id=$group_id'>Group details</a><form method='POST' action='../backend/leave-group.php'><input type='hidden' name='event_id' value=$event_id></input><input type='hidden' name='group_id' value=$group_id></input><button type='submit'>Leave Group</button></form></div>";
 	echo "<table cellpadding='10' style='text-align: left;'><caption>Groups</caption><tbody>";
 			
 	foreach($group_rows as $group){ 
