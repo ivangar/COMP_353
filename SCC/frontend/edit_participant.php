@@ -1,8 +1,8 @@
 <?php 
+require("navbar.php");
 $user_id = $_GET["user_id"];
 $group_id = $_GET["group_id"];
 $group_name = $_GET["group_name"];
-require("navbar.php");
 require("../backend/users/participant.php");
 ?>
 
