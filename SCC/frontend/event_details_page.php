@@ -19,11 +19,6 @@ require("navbar.php");?>
 </head>
 
 <body>
-  <div class="p-5 position-absolute">
-    <?php $go_back_url = ($event_manager) ? "<a class='btn btn-outline-primary pr-2' href='event_manager_page.php'>Go Back</a>" : "<a class='btn btn-outline-primary pr-2' href='dashboard.php'>Go Back</a>";
-          echo $go_back_url; ?>
-    <a class='btn btn-outline-primary' href='../backend/logout.php'>Logout</a>
-  </div>
 
 <div class="container text-center pt-5">
   
