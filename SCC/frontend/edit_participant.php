@@ -41,7 +41,6 @@ require("../backend/users/participant.php");
 
 <body>
 
-  <?php echo "<a href='view_participants.php?group_id=".$group_id."&group_manager=1&group_name=".$group_name."'>Go Back</a>";?>
   <h3>Edit participant's information</h3>
 
   	<div class="container">
