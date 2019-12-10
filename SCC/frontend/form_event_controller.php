@@ -1,6 +1,7 @@
 <?php
 require "../backend/connection.php";
-require "../backend/events/event_details.php";?>
+require "../backend/events/event_details.php";
+require "../frontend/navbar.php";?>
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -36,8 +37,6 @@ require "../backend/events/event_details.php";?>
 </head>
 
 <body>
-  <a href='event_controller_page.php'>Go Back</a>
-  <a href='../backend/logout.php' class='right'>Logout</a>
   <h2 >Set reources</h2>
 
   <?php if (!empty($event_id) && $event_id) {?>
