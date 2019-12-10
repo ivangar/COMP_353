@@ -85,7 +85,7 @@ echo "<input type='hidden' name='event_id' value='$event_id'>
             .done(function( data ) {
              	if(data === "updated") {
              		alert("Resources has been set");
-             		window.location.href='event_manager_page.php';
+             		window.location.href='../frontend/dashboard.php';
              	}
                 else alert(data);
             })
