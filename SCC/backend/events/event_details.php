@@ -95,8 +95,8 @@ if($event_id){
 
             // output data of each row
             while($row = $resource_result->fetch_assoc()) {
-              $event_resources = array("Flat fees"=>$row["flat_fee"], "Resource type"=>$row["type"], "Unit"=>$row["unit"], "Resource name"=>$row["resource_name"], "Extra fees"=>$row["extra_fee"], "Payment discount"=>$row["discount"]);
-              $event_resources_ids = array("Flat fees"=>"flat_fee", "Resource type"=>"resource_type", "Unit"=>"unit", "Resource name"=>"resource_name", "Extra fees"=>"extra_fee", "Payment discount"=>"discount");
+              $event_resources = array("Flat fees"=>$row["flat_fee"], "Resource type"=>$row["type"], "Unit"=>$row["unit"], "Resource name"=>$row["resource_name"], "Extra fees"=>$row["extra_fee"], "Payment discount"=>$row["discount"] , "Payment Receiver"=>$row["payment_receiver"]);
+              $event_resources_ids = array("Flat fees"=>"flat_fee", "Resource type"=>"resource_type", "Unit"=>"unit", "Resource name"=>"resource_name", "Extra fees"=>"extra_fee", "Payment discount"=>"discount", "Payment receiver"=> "payment_receiver");
             }
 
         }
