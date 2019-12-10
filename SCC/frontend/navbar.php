@@ -43,6 +43,7 @@ if(!isset($_SESSION)){
                         if(isset($_GET['event_id']) && isset($_GET['group_id']) && $_GET['event_id'] !="" && $_GET['group_id']!= "") {         
                             include("../backend/authorize_event.php");
                             if(isset($is_event_manager)) {
+								$params = "?event_id=" . $_GET['event_id'] . "&group_id=" . $_GET['group_id'];
                                 echo "<li class='nav-item'>";
                                 echo '<a class="nav-link" href="create_poll.php' . $params . '">Create Poll</a>';
                                 echo "</li>";

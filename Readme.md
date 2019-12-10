@@ -10,3 +10,27 @@
 -27502303        samie       SIAMAK        s_samie@encs.concordia.ca        
 -40035761        desmarais       JESSE       j_esmar@encs.concordia.ca       
 ---  
+
+
+Installation: 
+
+Simply add files to destination and go to frontend's index php to start.
+
+If you test on the AITS system it has already been put up on grc353_2
+
+IMPORTANT If you are NOT using AITS supplied database you must go to SCC/backend/connection.php and change the database information.
+
+DO NOT LOSE YOUR LOGIN INFORMATION. PASSWORDS ARE HASHED AND CANNOT BE RETRIEVED IF LOST.
+Sample users
+
+Sys Admin 
+Sandra
+
+ID: 1751053
+Pass: 1643328
+
+
+Normal users
+Theo	
+ID: 3060862	
+Pass : 9887425
