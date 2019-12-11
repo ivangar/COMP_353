@@ -17,66 +17,50 @@ require "../frontend/navbar.php";?>
 
   <meta name="theme-color" content="#fafafa">
 
-  <style type="text/css">
-  	h2{
-  		text-align: center;
-  	}
-    div.container{
-    	margin: auto;
-    	width: 50%;
-    }
-    table{
-    	text-align: left;
-    }
-    .right {
-      position: absolute;
-      right: 0px;
-      padding: 10px;
-    }
-</style>
+
 </head>
 
 <body>
-  <h2 >Set reources</h2>
+  <div class="container text-center pt-5">
 
-  <?php if (!empty($event_id) && $event_id) {?>
-  	<div class="container">
+    <?php if (!empty($event_id) && $event_id) {?>
+    	<div class="flex border border-primary rounded-top mb-4">
 
-	  	<form action="../backend/events/update_event.php" method="post" name="finalize_event_form" id="finalize_event_form" accept-charset="utf-8">
+  	  	<form action="../backend/update_resource.php" method="post" name="update_event_resource" id="update_event_resource" accept-charset="utf-8">
 
-            <?php
-echo "<input type='hidden' name='event_id' value='$event_id'>
-                                    <input type='hidden' name='location_id' value='$event_location_id'>
-                                    <input type='hidden' name='payment_id' value='$event_payment_id'>
-                                    <input type='hidden' name='resource_id' value='$event_resource_id'>";
+              <?php
+      echo "<input type='hidden' name='resource_id' value='$event_resource_id'>";
 
-    echo "<div style='padding-top:30px;'><fieldset><legend>Resources</legend><table cellpadding='10' style='text-align: left;'><tbody>";
-    foreach ($event_resources as $label => $value) {
-        $column_name = $event_resources_ids[$label];
-        echo "<tr><td><label>$label</label></td><td><input type='text' name='$column_name' title='$column_name' value='$value'></td></tr>";
-    }
-    echo "</tbody></table></fieldset>";
+      echo "<fieldset><legend class='bg-primary p-4 mb-4 text-white rounded-top'>Set Resources</legend><table class='d-flex justify-content-center' cellpadding='10' style='text-align: left;'><tbody>";
+      foreach ($event_resources as $label => $value) {
+          $column_name = $event_resources_ids[$label];
+          echo "<tr><td><label>$label</label></td><td><input type='text' class='form-control' name='$column_name' title='$column_name' value='$value'></td></tr>";
+      }
+      echo "</tbody></table></fieldset>";
 
-    echo "<div style='padding-top:30px;'>
-                    <table cellpadding='10' style='text-align: left;'>
-                        <tbody>
-                        <tr>
-                        <td><button id='finalize_event' type='submit'>Set Resources</button>";
-    ?>
-        </form>
-    </div>
-
-
-  <?php }?>
+      echo "<table class='d-flex justify-content-center' cellpadding='20' style='text-align: left;'>
+              <tbody>
+                <tr>
+                  <td><button  class='btn btn-primary' type='submit'>Set Resources</button>
+                  </td>
+                </tr>
+              </tbody>
+              </table>";
+      ?>
+          </form>
+      </div>
+    <?php }?>
+  </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script type="text/javascript">
 	$(document).ready(function () {
 
-		$( "#finalize_event_form" ).submit(function( event ) {
-			event_data = $("#finalize_event_form").serializeArray();
+		$( "#update_event_resource" ).submit(function( event ) {
+      event.preventDefault();
+			event_data = $("#update_event_resource").serializeArray();
 
 		    $.ajax({
-              url: "../backend/events/update_event.php",
+              url: "../backend/update_resource.php",
               cache: false,
               type: "POST",
               dataType: "html",
@@ -84,17 +68,15 @@ echo "<input type='hidden' name='event_id' value='$event_id'>
             })
             .done(function( data ) {
              	if(data === "updated") {
-             		alert("Resources has been set");
-             		window.location.href='../frontend/dashboard.php';
+             		alert("Resource has been set");
+             		window.location.href='../frontend/controller_dashboard.php';
              	}
                 else alert(data);
             })
             .fail(function() {
                 alert("event did not update");
             }); //ajax call
-
-            event.preventDefault();
-        });
+    });
 
 	});//end document.ready
   </script>
