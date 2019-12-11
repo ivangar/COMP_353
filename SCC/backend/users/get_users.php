@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This file gets all the users and saves the data as an array
+*/
 	require("../backend/connection.php");
 
 	//Get all the users from DB and generate select list

@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script inserts a new group linked to the current event. It inserts all the members that were selected by the user
+into the group members table. Thus these users become group members at the creation of a group. The user can also not
+adding any member yet, however he becomes the group manager and the only group member of this group.
+*/
 include("connection.php");
 
 if(!isset($_SESSION)){

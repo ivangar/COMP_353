@@ -1,4 +1,9 @@
 <?php 
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script gets all the group details and saves it into an array
+*/
 if(!isset($_SESSION)){
     session_start();
 }
@@ -13,13 +18,6 @@ $sql = "SELECT `group_manager_id`, `name`, `details`, `status` FROM `groups` WHE
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
-	
-	/*//Get all the users from DB and generate select list
-	$users = array();
-	$participants = array();
-	$sql = "SELECT user_id, first_name, last_name FROM users";
-	$result = $conn->query($sql);*/
-	
 	
     // output data of each row
     while ($row = $result->fetch_assoc()) {

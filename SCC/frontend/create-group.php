@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script displays a form to create a new group for the event.
+*/
 if(!isset($_SESSION)){
     session_start();
 }

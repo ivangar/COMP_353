@@ -1,4 +1,9 @@
 <?php 
+/*
+Author: Jesse Desmarais, Ivan Garzon
+ID: 40035761, 27006284
+This script has a button to import a csv file with the new users that will be added to an event or users table.
+*/
 require("navbar.php");
 $event_id = $_GET["event_id"];
 $action_url = "action='../backend/add_users.php?event_id=$event_id'";
@@ -36,10 +41,6 @@ $action_url = "action='../backend/add_users.php?event_id=$event_id'";
 	</tr>
 
 	</form>
-	<tr>
-	<td></td>
-	<td><button onclick="goBack()">Cancel</button></td>
-	</tr>
 
 	</table>
 	  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

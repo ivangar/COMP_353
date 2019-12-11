@@ -1,4 +1,10 @@
 <?php 
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script displays a form to update an existent group/event participant. The user information retrieved from the DB
+is pre-populated automatically in the fields
+*/
 require("navbar.php");
 $user_id = $_GET["user_id"];
 $group_id = $_GET["group_id"];

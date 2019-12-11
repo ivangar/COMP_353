@@ -1,4 +1,12 @@
 <?php 
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script a search box to search for a new participant. The user id should exist in the users table. As well, if the
+user with the id already is part of the event (regardless of his status) you cannot add it here. Instead, you can go
+directly to users page and edit his status there. When the search returns a user it populates the fields with javascript 
+and displays the Add Participant button.
+*/
 session_start();
 $event_id = $_GET["event_id"];
 $group_id = $_GET["group_id"];

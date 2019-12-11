@@ -1,4 +1,11 @@
 <?php 
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script displays all the new event that was created by the system admin. At this stage, the event is not finalized
+and exists in the database as an archived event. When the event manager fills in all the pertinent data, the event will
+change its status to active.
+*/
 require("../backend/connection.php");
 require("../backend/events/event_details.php");?>
 

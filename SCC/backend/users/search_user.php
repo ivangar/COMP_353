@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This file searches a specific user by id and populates the table if it exists and not part of the group/event/
+*/
 	session_start();
 	require("../connection.php");
 

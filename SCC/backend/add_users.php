@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Ivan Garzon, Jesse Desmarais
+ID: 27006284, 40035761
+This adds new users to an event by importing the data from a CSV file, it checks that if the user already exists in the DB 
+to avoid inserting duplicates. It also checks if the user is already linked to a group/event 
+*/
 if(!isset($_SESSION)) { session_start(); }
 $event_id = $_GET["event_id"];
 $location = "Location: ../frontend/event_details_page.php?event_id=$event_id" ;

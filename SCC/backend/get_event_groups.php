@@ -1,8 +1,9 @@
 <?php
 /*
- * This file is used to display events that are managed by the current logged in user.
- * It should be included from or redirected from another file (perhaps the home page)
- */
+Author: Ivan Garzon
+ID: 27006284
+This script gets all the event groups and saves an array of them.
+*/
 require "connection.php";
 ini_set("display_errors", "1");
 if (!isset($_SESSION)) {

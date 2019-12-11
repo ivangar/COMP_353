@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This file gets all the group participant data and saves the data as an array
+*/
 	require("../backend/connection.php");
 
 	//Get all the data from DB for a specific participant

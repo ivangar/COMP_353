@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ragith Sabapathipillai, Ivan Garzon
+ID: 26854486, 27006284
+This script displays a form to create an event
+*/
 	require("navbar.php");
 	require("../backend/users/get_users.php");
 ?>
