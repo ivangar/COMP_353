@@ -1,4 +1,12 @@
-<?php 
+<?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script displays a form with all the event information. Each section is related to the different table that has a 
+relationship with the Foreign Keys of the event. If a user who is not the event manager of the corresponging event 
+is viewing this page, then he can only view the data in disabled fields and the participants.
+If the event manager is viewing the event, the form displays all the action buttons related to the event.
+*/ 
 require("../backend/connection.php");
 require("../backend/events/event_details.php");
 require("navbar.php");?>

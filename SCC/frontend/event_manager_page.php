@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script displays all the events in a table format. It is included in the user dashboard.
+*/ 
 require "../backend/connection.php";
 require "../backend/events/event_manager.php";?>
 

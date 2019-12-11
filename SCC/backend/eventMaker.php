@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script is called to insert new records for the event functional dependencies, getting the new inserted id of each record
+and using them as foreing keys in the nev event. As well, it creates a new group, which is the default or primary group linked
+to the event itself. It also inserts the event manager as the group adming and group member of the primary group.
+*/
 include("connection.php");
 session_start();
 

@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Ivan Garzon
+ID: 27006284
+This file updates the participant's data or adds it to an existing group 
+*/
 	require("../connection.php");
 
 	if(isset($_POST) && (!empty($_POST))){

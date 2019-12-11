@@ -1,5 +1,7 @@
 <?php
 /*
+Author: Ivan Garzon
+ID: 27006284
 * This file is used to display events that are managed by the current logged in user.
 * It should be included from or redirected from another file (perhaps the home page)
 */

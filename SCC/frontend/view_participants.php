@@ -1,4 +1,11 @@
 <?php 
+/*
+Author: Ivan Garzon
+ID: 27006284
+This script displays all the group participants and their information in a tabular form. 
+If the user is the group manager or the event manager then an edit link is displayed to edit any 
+participant, approve him, reject him, put his status to pending, etc.
+*/
 $group_id = $_GET["group_id"];
 $group_name = $_GET["group_name"];
 $group_manager = $_GET["group_manager"];

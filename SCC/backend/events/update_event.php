@@ -1,5 +1,7 @@
 <?php
 /*
+Author: Ivan Garzon
+ID: 27006284
 * This file is used to display event details of a specific event ID.
 * It should be called from another file, by passing the event id as part of the url=event_details.php?event_id=2
 */
