@@ -1,3 +1,11 @@
+<?php /*
+Author: Ragith Sabapathipillai
+Id: 26854486
+User can request to join a group if they are sent to this page
+*/
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

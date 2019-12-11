@@ -1,4 +1,13 @@
 <?php
+/*
+Author: Ragith Sabapathipillai
+Id: 26854486
+
+The wall page for an event, contains posts, polls and instant messages.
+
+*/
+
+
 //start session
 if (!isset($_SESSION)) {
     session_start();

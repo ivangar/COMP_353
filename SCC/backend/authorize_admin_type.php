@@ -1,4 +1,10 @@
 <?php 
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Checks the authorization level set by the previous admin scripts
+*/
+
 require("authorize.php");
 require("connection.php");
 

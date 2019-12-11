@@ -1,5 +1,9 @@
 <?php
-
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This script allows an event manager or admin to search for groups by tags
+*/
 if(!isset($_GET["event"]) && !isset($_GET["primary"]))
 	exit();
 include("connection.php");

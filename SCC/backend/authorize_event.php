@@ -1,4 +1,11 @@
 <?php 
+/*
+Author: Jesse Desmarais
+ID: 40035761
+validates if the user is an event manager or admin
+*/
+
+
 require("authorize.php");
 require("connection.php");
 

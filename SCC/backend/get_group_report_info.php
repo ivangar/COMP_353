@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This script retrieves the information for the group report
+*/
+
 // session_start();
 if (!isset($_SESSION['active_user'])) {
     header("Location: ../frontend/dashboard.php");

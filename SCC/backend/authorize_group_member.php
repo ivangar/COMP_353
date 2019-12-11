@@ -1,4 +1,10 @@
 <?php 
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Authorizes a user to see a group that he is a member of
+*/
+
 require("authorize.php");
 require("connection.php");
 

@@ -1,3 +1,13 @@
+<?php
+/*
+Author: Ragith Sabapathipillai
+Id: 26854486
+Page displays the post form for a user to submit a post to the group wall
+*/
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>

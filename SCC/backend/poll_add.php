@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Called when the event manager tries to add a poll
+*/
+
     include("authorize_event.php");
     $group_id = $_GET["group_id"];
     $date = $_POST["end_date"];

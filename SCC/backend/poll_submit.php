@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Page is called when we need to submit our selection to a poll.
+*/
+
 include("connection.php");
 session_start();
 

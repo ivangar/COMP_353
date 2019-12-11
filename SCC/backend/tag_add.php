@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Adds a users tag then returns them to the previous page
+*/
+
+
 if(!isset($_GET["type"]) || !isset($_GET["tag"]))
 	exit();
 

@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This script retrievs information for the event report
+*/
+
 include "connection.php";
 // session_start();
 if (!isset($_SESSION['active_user'])) {

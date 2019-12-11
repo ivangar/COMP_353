@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Page clears users selection for the poll to allow them to change their answer
+*/
+
+
 session_start();
 include("connection.php");
 if(!isset($_SESSION['active_user']))

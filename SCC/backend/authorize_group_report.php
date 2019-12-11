@@ -1,4 +1,10 @@
 <?php 
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Authorizes an event manager to see a group report
+*/
+
 require("authorize.php");
 require("connection.php");
 

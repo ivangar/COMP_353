@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This page allows the event manager to create polls for the group
+
+*/
+
 include("../backend/authorize_event.php");
 ?>
 

@@ -1,4 +1,11 @@
 <?php
+
+/*
+Authored by : Jesse Desmarais
+ID: 40035761 
+This page displays the report information for a group.
+*/
+
 require "../backend/get_group_report_info.php";
 ?>
 

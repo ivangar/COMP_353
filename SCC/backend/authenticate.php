@@ -1,4 +1,11 @@
 <?php	
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Checks if the password is correct when a user tries to login, if they are we start a session 
+*/
+
+
 	include ("connection.php");
 
 	$username = "'" . $_POST["login_username"] . "'";

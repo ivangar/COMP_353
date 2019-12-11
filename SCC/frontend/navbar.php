@@ -1,4 +1,15 @@
 <?php
+/*
+Author: Ragith Sabapathipillai, Jesse Desmarais
+Id: 26854486 , 40035761
+Styled By:
+Nicolas brodeur- champagne
+Id:27043651
+
+Navbar displays areas of the site the user is allowed to access 
+*/
+
+
     $silent_auth = true;
     include("../backend/authorize_admin.php");
 	//start session

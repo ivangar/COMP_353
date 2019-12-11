@@ -1,4 +1,13 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+
+This page displays the event report, which contains basic event information and the group report for the main group. It also has a list of groups in the event to search through
+
+*/
+
+
 include "navbar.php";
 require "../backend/get_event_report_info.php";
 

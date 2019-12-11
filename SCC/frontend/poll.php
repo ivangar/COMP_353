@@ -1,4 +1,12 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This page displays the poll
+
+*/
+
+
 include "../backend/connection.php";
 
 $user_id = $_SESSION['active_user']['user_id'];

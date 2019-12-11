@@ -1,4 +1,13 @@
 <?php
+/*
+Author: Siamak Samie
+ID: 27502303
+
+This page allows the controller to update resource information for a specific event
+
+*/
+
+
 require "../backend/connection.php";
 require "../backend/events/event_details.php";
 require "../frontend/navbar.php";?>

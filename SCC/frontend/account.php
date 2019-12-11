@@ -1,4 +1,12 @@
 <?php 
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This page displays the users information
+
+*/
+
+
 session_start();
 include("navbar.php");
 include("../backend/connection.php");

@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+When a payment is being made this script forwards the request to paypal
+*/
+
+
 include("authorize_event.php");
 
 $sql = "SELECT * FROM `resources` JOIN `events` ON `events`.`resource_id` = `resources`.`resource_id` WHERE `events`.`event_id` = $event_id";

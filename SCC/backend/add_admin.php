@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+this script will update the admin roles of a user or remove if we wish to unmake them an admin
+*/
+
 include("authorize_god.php");
 
 $user_id = $_POST["user_id"];

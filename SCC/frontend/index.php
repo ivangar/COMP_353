@@ -1,4 +1,9 @@
 <?php 
+/*
+Author: Jesse Desmarais , Nicolas brodeur-champagne
+ID: 40035761 , 27043651
+*/
+
 session_start();
 if(isset($_SESSION['active_user']))
 {

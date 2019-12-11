@@ -1,6 +1,8 @@
 <!--
-test link:
-http://comp_353.test/SCC/frontend/instant_messaging.php?group_id=1
+Author: Siamak Samie
+Id: 27502303
+Instant message feature allows users to communicate in real time, updates every second
+*/
 -->
 
 <!doctype html>

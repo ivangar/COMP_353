@@ -1,4 +1,10 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Page is called when we want to remove a poll
+*/
+
 include("connection.php");
 $poll_id = $_POST["id"];
 

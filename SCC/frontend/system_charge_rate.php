@@ -1,3 +1,12 @@
+<? php
+/*
+Author: Siamak Samie
+ID: 27502303
+
+allows user to set sets system charge rate
+*/
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
 

@@ -1,5 +1,12 @@
 
 <?php
+/*
+Author: Nico Brodeur Champagne
+ID: 27043651
+allows a user to register to the site
+*/
+
+
 session_start();
 if(isset($_SESSION['active_user']))
 {

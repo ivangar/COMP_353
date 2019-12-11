@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Nicolas brodeur-champagne
+ID: 27043651
+This is the email client for the site.
+*/
+
+
     include("navbar.php");
     include ("../backend/emails.php");
 ?>

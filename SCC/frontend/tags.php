@@ -1,5 +1,11 @@
 <?php 
-
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Stlyed by: nicolas brodeur-champagne	
+ID: 27043651
+Retrives tags and displays them for either user or groups
+*/
 if(!isset($_GET["type"]))
 	exit();
 

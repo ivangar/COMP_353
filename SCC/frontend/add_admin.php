@@ -1,4 +1,11 @@
 <?php
+/*
+Author: Jesse Desmarais
+ID: 40035761
+This page allows the sys admin to create more admins
+
+*/
+
     include("../backend/authorize_god.php");
     require("navbar.php");
     if(isset($_SESSION["admin_create"])) {

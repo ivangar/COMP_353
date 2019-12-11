@@ -1,5 +1,9 @@
 <?php
-
+/*
+Author: Jesse Desmarais
+ID: 40035761
+Finds a user based on their tags
+*/
 if (!isset($_GET["group_id"])) {
     exit();
 }
